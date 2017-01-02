@@ -1,0 +1,56 @@
+.block {
+    position: relative;
+    float: left;
+}
+.block:before, .block.editing:before, .block:after, .block.editing:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: -1px;
+    -webkit-transition: all 100ms ease;
+    transition: all 100ms ease;
+}
+.block:hover {
+    cursor: text;
+}
+.block:focus {
+    outline: 0;
+}
+.block:hover:before, .block.editing:before {
+    border: #a30065 1px dashed;
+}
+.block:hover:after, .block.editing:after {
+    box-shadow: #a30065 0 0 10px 2px;
+}
+
+.block-editor-on .block {
+    position: relative;
+}
+.block-editor-on .block:before, .block-editor-on .block:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: -1px;
+    -webkit-transition: all 100ms ease;
+    transition: all 100ms ease;
+}
+.block-editor-on .block:hover:before {
+    border: #a30065 1px dashed;
+}
+.block-editor-on .block:hover:after{
+    box-shadow: #a30065 0 0 10px 2px;
+}
+
+.block-on {
+    border: 1px dashed #f3755f;
+}
+
+.block-editor-on {
+    margin-left: 300px;
+}

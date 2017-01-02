@@ -1,0 +1,6 @@
+.git
+node_modules/
+bower_components/
+assets.orig/
+dist/
+src/js/extra/firebase/firebase.js

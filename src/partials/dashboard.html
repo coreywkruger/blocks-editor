@@ -1,0 +1,76 @@
+<section class="container template none">
+    <header>
+        <div class="preview"></div>
+        <br/>
+        <p>Import your first template to get started.</p>
+    </header>
+</section>
+
+<!--<section class="container template new add_template_box">
+    <header>
+        <div class="preview"></div>
+        <form action="" method="post" enctype="multipart/form-data">
+            <table class="newoptions">
+                <tr>
+                    <td class="title"><input type="text" name="title" value="" placeholder="Title" /></td>
+                    <td class="title"><input type="file" name="template" value=""/></td>
+                    <td class="options">
+                        <input type="hidden" name="new_template" value="1" />
+                        <input type="submit" value="Save" class="btn-main" />
+                        <input type="submit" value="Cancel" class="btn-alt cancel_template" />
+                    </td>
+                </tr>
+                <tr class="upload_template_error"><td></td><td></td><td></td></tr>
+            </table>
+        </form>
+    </header>
+</section>-->
+
+<section class="container template">
+    <form action="">
+        <table class="emails">
+            <tr ng-repeat="template in templates">
+                <td class="title"><h2><a href="" ng-click="edit(template.id)">{{template.title}}</a></h2></td>
+                <td class="updated">
+                </td>
+                <td class="actions">
+                    <ul>
+                        <li><a href="" title="Duplicate" class="btn-icon copy duplicate-email" ng-click="duplicate(template.id)"><span>Duplicate</span></a></li>
+                        <li><a href="" title="Export" class="btn-icon export show-export" ng-click="export(template.id)"><span>Export</span></a></li>
+                        <li><a href="" title="Share" class="btn-icon link show-share" ng-click="share(template.id)"><span>Share</span></a></li>
+                        <li><a href="" title="Delete" class="btn-icon remove show-delete" ng-click="delete(template.id)"><span>Delete</span></a></li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </form>
+</section>
+    
+<div id="lightbox"></div>
+<div id="sharelink" class="lightboxwindow">
+    <section class="account">
+        <form>
+            <h1>Share Email Link</h1>
+            <p>Copy the private link:</p>
+            <input type="text" placeholder="" value="http://3.blocksedit.com/" class="send_link_link" onclick="this.select()" /> <a href="#" class="btn-alt copy_link">Copy</a>
+            <p>Email the link to someone:</p>
+            <input type="text" placeholder="Email address" class="send_link_email"/><br/>
+            <input type="submit" value="Send link" class="btn-main send_link" /><br/>
+        </form>
+    </section>
+</div>
+<div id="exportemail" class="lightboxwindow">
+    <section class="account">
+        <h1>Export Email</h1>
+        <p>Download a ZIP archive of the HTML code and images for your email to transfer to your email client for sending out.</p>
+        <a href="#" class="btn-alt export_zip" target="_blank">Download ZIP archive</a><br/>
+<!--
+        <a href="#" class="btn-alt">Copy link to the email</a><br/>
+-->
+<!--
+        <a href="#" class="btn-alt">Copy email HTML code</a><br/>
+-->
+        <a href="#">Instructions to transfer to your email client &rarr;</a>
+    </section>
+</div>
+<input type="hidden" class="active_email" data-id="" data-clipboard-text="" />
