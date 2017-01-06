@@ -1,0 +1,3 @@
+[submodule "blocks-editor-demo"]
+	path = blocks-editor-demo
+	url = git@github.com:coreywkruger/blocks-editor-demo

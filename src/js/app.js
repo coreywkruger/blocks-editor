@@ -11,14 +11,14 @@ var app = angular.module('bdApp', [
 app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) => {
     // $httpProvider.interceptors.push(/* */);
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/dashboard');
 
     $stateProvider
-    .state('home', {
-      url: '/home',
-      templateUrl: '/partials/home.html',
-      controller: 'editorController'
-    })
+    // .state('home', {
+    //   url: '/home',
+    //   templateUrl: '/partials/home.html',
+    //   controller: 'editorController'
+    // })
     .state('login', {
       url: '/login',
       templateUrl: '/partials/login.html',

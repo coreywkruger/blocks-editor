@@ -8,9 +8,9 @@ const concat = require('gulp-concat');
 const del = require('del');
 const templateCache = require('gulp-angular-templatecache');
 
-const jsDestination = 'dist/js';
-const cssDestination = 'dist/css';
-const fontDestination = 'dist/fonts';
+const jsDestination = 'blocks-editor-demo/js';
+const cssDestination = 'blocks-editor-demo/css';
+const fontDestination = 'blocks-editor-demo/fonts';
 
 // build javascript files
 gulp.task('js', ['libs', 'angular-templates', 'app'], function() {
@@ -98,7 +98,7 @@ gulp.task('css', function () {
 gulp.task('serve', function () {
   var app = connect()
     .use(connect.logger('dev'))
-    .use(connect.static('./dist'));
+    .use(connect.static('./blocks-editor-demo'));
 
   http.createServer(app).listen(4001);
 });
@@ -110,7 +110,7 @@ gulp.task('default', ['js', 'clean', 'css', 'fonts', 'serve'],
     gulp.watch(['src/js/**/*'], ['js']);
   });
 
-gulp.task('dist', ['js', 'css', 'fonts'], function () {
+gulp.task('dist', ['js', 'clean', 'css', 'fonts'], function () {
   return gulp.src([
     ''
   ]);
