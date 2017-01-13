@@ -1,7 +1,7 @@
 var editorServices = angular.module('editorServices', []);
 
-editorServices.factory('editorService', [
-  function() {
+editorServices.factory('editorService', ['$rootScope',
+  function($rootScope) {
     return new function(){
 
       this.templates = [{
@@ -14,31 +14,70 @@ editorServices.factory('editorService', [
         content: testTemplate2
       }];
 
+      this.events = {
+        EDITING: 'start-editing',
+        CANCEL: 'stop-editing',
+        SAVE: 'save-template'
+      };
+
       this.get = function(id){
         return _.find(this.templates, function(template){
           return template.id === id;
         });
-      }
+      };
+
+      this.bocks = [];
+      this.registerBlock = function(id){
+        if(!_.find(this.blocks, function(blockId){
+          return blockId === id;
+        })){
+          this.blocks.push(id);  
+        }
+      };
+
+      this.clearBlocks = function(){
+        this.blocks = [];
+      };
+
+      this.edit = function(id){
+        $rootScope.$broadcast(this.events.EDITING, this.get(id));
+      };
+
+      this.cancel = function(id){
+        $rootScope.$broadcast(this.events.CANCEL, this.get(id));
+      };
+
+      this.save = function(id){
+        $rootScope.$broadcast(this.events.SAVE, this.get(id));
+      };
+
+      this.update = function(id, newContent){
+        var index =_.findIndex(this.templates, function(template){
+          return template.id === id;
+        });
+        this.templates[index].content = newContent;
+      };
     };
   }
 ]);
 
-var testTemplate = '<div class="block"> \
-  <h2>My Text One</h2> \
-  <p>1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> \
-</div> \
-<hr> \
-<div class="block"> \
-  <h2>My Text Two</h2> \
-  <p>2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> \
-</div> \
-<hr> \
-<div class="block"> \
-  <h2>My Text Three</h2> \
-  <p>3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> \
-</div>';
+var testTemplate = `<div class="block">
+  <h2>My Text One</h2>
+  <p>1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+<hr>
+<div class="block">
+  <h2>My Text Two</h2>
+  <p>2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+<hr>
+<div class="block">
+  <h2>My Text Three</h2>
+  <p>3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>`;
 
-var testTemplate2 = `<table style="width:100%" cellpadding="0" cellspacing="0" border="0">
+var testTemplate2 = `
+<table style="width:100%" cellpadding="0" cellspacing="0" border="0">
   <tr>
     <td align="center">
       <table style="max-width:600px;background-color:#eeeeee;border-collapse: collapse; border-spacing:0;margin:1em auto 5px; padding:0; width:600px" cellpadding="0" cellspacing="0" border="0">
@@ -56,7 +95,7 @@ var testTemplate2 = `<table style="width:100%" cellpadding="0" cellspacing="0" b
                 </td>
                 <td>
                   <a target="_blank" href="http://www.linkedin.com/pub/pam-esser/6/49/a54"><img src="http://esserdesign.com/eblast/20160713/images/linkedin.png" alt="LinkedIn" width="22" height="22" /></a>
-                                    <a target="_blank" href="http://www.facebook.com/pages/Esser-Design/233543286705227" style="margin-right:6px"><img src="http://esserdesign.com/eblast/20160713/images/facebook.png" width="22" height="22" alt="Like us on Facebook" /></a>
+                  <a target="_blank" href="http://www.facebook.com/pages/Esser-Design/233543286705227" style="margin-right:6px"><img src="http://esserdesign.com/eblast/20160713/images/facebook.png" width="22" height="22" alt="Like us on Facebook" /></a>
                 </td>
               </tr>
             </table>      
@@ -92,13 +131,13 @@ var testTemplate2 = `<table style="width:100%" cellpadding="0" cellspacing="0" b
               <tr>
                 <td class="block" style="width:260px;" valign="top">
                   <a target="_blank" href="http://esserdesign.com/#!/projects/branding/829"><img class="image_fix" src="http://esserdesign.com/eblast/20160713/images/branding.jpg" alt="Branding: Arizona State University" /></a>
-                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px">Arizona State University</h2>
+                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px" class="editable-text">Arizona State University</h2>
                   <a target="_blank" href="http://esserdesign.com/#!/projects/branding/829" style="color:#D9531E; font-size:13px; text-decoration:none">See More &raquo; </a>
                 </td>
                 <td style="width:20px;">&nbsp;</td>
                 <td class="block" style="width:260px;" valign="top">
                   <a target="_blank" href="http://esserdesign.com/#!/projects/Packaging/776"><img class="image_fix" src="http://esserdesign.com/eblast/20160713/images/packaging.jpg" alt="Packaging: Essence Bakery Cafe" /></a>
-                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px">Essence Bakery Cafe</h2>
+                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px" class="editable-text">Essence Bakery Cafe</h2>
                   <a target="_blank" href="http://esserdesign.com/#!/projects/Packaging/776" style="color:#D9531E; font-size:13px; text-decoration:none">See More &raquo;</a>
                 </td>
               </tr>
@@ -112,13 +151,13 @@ var testTemplate2 = `<table style="width:100%" cellpadding="0" cellspacing="0" b
               <tr>
                 <td class="block" style="width:260px;" valign="top">
                   <a target="_blank" href="http://esserdesign.com/#!/projects/Print/770"><img class="image_fix" src="http://esserdesign.com/eblast/20160713/images/print.jpg" alt="Print: City of Phoenix" /></a>
-                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px">City of Phoenix</h2>
+                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px" class="editable-text">City of Phoenix</h2>
                   <a target="_blank" href="http://esserdesign.com/#!/projects/Print/770" style="color:#D9531E; font-size:13px; text-decoration:none">See More &raquo; </a>
                 </td>
                 <td style="width:20px;">&nbsp;</td>
                 <td class="block" style="width:260px;" valign="top">
                   <a target="_blank" href="http://esserdesign.com/#!/projects/websites/1935"><img class="image_fix" src="http://esserdesign.com/eblast/20160713/images/websites.jpg" alt="Websites: LGE Design Build" /></a>
-                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px">LGE Design Build</h2>
+                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px" class="editable-text">LGE Design Build</h2>
                   <a target="_blank" href="http://esserdesign.com/#!/projects/websites/1935" style="color:#D9531E; font-size:13px; text-decoration:none">See More &raquo;</a>
                 </td>
               </tr>
@@ -141,13 +180,11 @@ var testTemplate2 = `<table style="width:100%" cellpadding="0" cellspacing="0" b
                 <td style="width:476px;">
                   <p style="color:#231f20;font-size:10px;margin-bottom:0">&copy; 2016 Esser Design | 2355 E Camelback Rd | Suite 200 | Phoenix, AZ 85016 | 602-257-9790</p>
                   <unsubscribe style="text-decoration:none"><p style="text-decoration:none;color:#231f20;font-size:10px;margin:0">Click here to unsubscribe.</p></unsubscribe>
+                </td>
                 <td>
-                <td>
-
-<a target="_blank" href="http://www.linkedin.com/pub/pam-esser/6/49/a54"><img src="http://esserdesign.com/eblast/20160713/images/linkedin.png" width="22" height="22" alt="LinkedIn" /></a>
+                  <a target="_blank" href="http://www.linkedin.com/pub/pam-esser/6/49/a54"><img src="http://esserdesign.com/eblast/20160713/images/linkedin.png" width="22" height="22" alt="LinkedIn" /></a>
                   <a target="_blank" href="http://www.facebook.com/pages/Esser-Design/233543286705227" style="margin-right:6px;"><img src="http://esserdesign.com/eblast/20160713/images/facebook.png" width="22" height="22" alt="Like us on Facebook" /></a>
-                  
-                <td>
+                </td>
               </tr>
             </table>
           </td>

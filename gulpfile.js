@@ -103,14 +103,14 @@ gulp.task('serve', function () {
   http.createServer(app).listen(4001);
 });
 
-gulp.task('default', ['js', 'clean', 'css', 'fonts', 'serve'],
+gulp.task('default', ['build', 'serve'],
   function () {
     gulp.watch(['src/css/**/*'], ['css']);
     gulp.watch(['src/partials/**/*'], ['js']);
     gulp.watch(['src/js/**/*'], ['js']);
   });
 
-gulp.task('dist', ['js', 'clean', 'css', 'fonts'], function () {
+gulp.task('build', ['js', 'clean', 'css', 'fonts'], function () {
   return gulp.src([
     ''
   ]);

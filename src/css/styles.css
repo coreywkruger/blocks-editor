@@ -506,3 +506,12 @@ section.accounts .users {
   -moz-transform-origin: 0 0;
   -ms-transform-origin: 0 0;
   transform-origin: 0 0; }
+
+#emailBody header#global .options {
+    position: absolute;
+    top: 9px;
+    right: 60px;
+    margin-right: 30px;
+    vertical-align: middle;
+    list-style: none;
+}

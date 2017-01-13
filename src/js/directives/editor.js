@@ -5,30 +5,45 @@ editorDirectives.directive('editor', ['$compile', function($compile) {
     replace: true,
     restrict: 'EA',
     scope: {
-      content: '='
+      content: '=',
+      editing: '=',
+      update: '=',
+      saveMethod: '='
     },
     link: function(scope, element) {
 
       var content = $compile(scope.content)(scope);
-      element.append(content);    
+      // get all editable regions
+      var blocks = content.find('.block');
 
-      var blocks = element.find('.block');
+      // append content into page
+      element.append(content);
 
+      // add block directive to editable regions
       angular.forEach(blocks, function(block){
         var editable = angular.element(block);
+        var blockId = Math.floor(Math.random() * (100000));
         editable.attr('block', '');
-        editable.attr('template-id', Math.floor(Math.random() * (100)));
+        editable.attr('block-id', blockId);
+        editable.attr('block-editable', `editing`);
         $compile(editable)(scope);
       });
 
-      scope.getContent = function(){
-        console.log(element.clone());
+      // return clean content from newly edited template
+      scope.saveContent = function(){
         var copy = element.clone()
         var all = copy.find('*');
+        all.removeClass('ng-binding');
         all.removeClass('ng-isolate-scope');
         all.removeClass('ng-scope');
+        return all.html();
       };
-      scope.getContent();
+
+      scope.$watch('update', function(newVal){
+        if(newVal){
+          scope.saveMethod(scope.saveContent());
+        }
+      });
     }
   };
 }]);

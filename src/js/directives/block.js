@@ -5,12 +5,19 @@ blockDirectives.directive('block', function() {
     replace: true,
     restrict: 'EA',
     scope: {
-      templateId: '@'
+      blockId: '@',
+      blockEditable: '='
     },
     link: function(scope, element, attributes) {
-      element.addClass('template-id-' + scope.templateId);
-      var editor = new MediumEditor('.template-id-' + scope.templateId);
-      // console.log(editor.getContent())
+      scope.editor;
+      scope.$watch('blockEditable', function(newVal){
+        if(newVal){
+          element.addClass('block-id-' + scope.blockId);
+          scope.editor = new MediumEditor('.block-id-' + scope.blockId);
+        } else if (scope.editor){
+          scope.editor.destroy();
+        }
+      });
     }
   };
 });

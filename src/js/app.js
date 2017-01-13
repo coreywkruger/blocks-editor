@@ -4,6 +4,7 @@ var app = angular.module('bdApp', [
   'dashboardControllers',
   'blockDirectives',
   'editorDirectives',
+  'headerControllers',
   'templates',
   'ui.router'
 ]);
@@ -14,11 +15,6 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     $urlRouterProvider.otherwise('/dashboard');
 
     $stateProvider
-    // .state('home', {
-    //   url: '/home',
-    //   templateUrl: '/partials/home.html',
-    //   controller: 'editorController'
-    // })
     .state('login', {
       url: '/login',
       templateUrl: '/partials/login.html',
