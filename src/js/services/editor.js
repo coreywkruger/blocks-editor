@@ -7,7 +7,7 @@ editorServices.factory('editorService', ['$rootScope',
       this.templates = [{
         title: 'Email One',
         id: '1',
-        content: testTemplate2
+        content: testTemplate
       }, {
         title: 'Email Two',
         id: '2',

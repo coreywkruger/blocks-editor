@@ -4,9 +4,9 @@ var editorControllers = angular.module('editorControllers', [
 
 editorControllers.controller('editorController', ['$scope', '$stateParams', 'editorService',	function($scope, $stateParams, editorService){
 
-  $scope.template = editorService.get($stateParams.id);
+  var template = editorService.get($stateParams.id);
+  $scope.content = template.content;
   $scope.editing = false;
-  $scope.update = false;
 
   $scope.$on(editorService.events.EDITING, function(){
     $scope.editing = true;
@@ -17,11 +17,11 @@ editorControllers.controller('editorController', ['$scope', '$stateParams', 'edi
   });
 
   $scope.saveMethod = function(newContent){
-    $scope.template.content = newContent;
+    $scope.content = newContent;
   };
 
   $scope.$on(editorService.events.SAVE, function(){
-    $scope.update = true;
-    editorService.update($scope.template.id, $scope.template.content);
+    $scope.editing = false;
+    editorService.update(template.id, $scope.content);
   });
 }]);

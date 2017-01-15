@@ -31,18 +31,17 @@ editorDirectives.directive('editor', ['$compile', function($compile) {
 
       // return clean content from newly edited template
       scope.saveContent = function(){
-        var copy = element.clone()
-        var all = copy.find('*');
-        all.removeClass('ng-binding');
-        all.removeClass('ng-isolate-scope');
-        all.removeClass('ng-scope');
-        return all.html();
+        // var copy = element.clone()
+        // var all = copy.find('*');
+        // all.removeClass('ng-binding');
+        // all.removeClass('ng-isolate-scope');
+        // all.removeClass('ng-scope');
+        // return all.html();
+        return element.html();
       };
 
-      scope.$watch('update', function(newVal){
-        if(newVal){
-          scope.saveMethod(scope.saveContent());
-        }
+      scope.$on('template-changed', function(){
+        scope.saveMethod(scope.saveContent());
       });
     }
   };

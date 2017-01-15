@@ -14,6 +14,9 @@ blockDirectives.directive('block', function() {
         if(newVal){
           element.addClass('block-id-' + scope.blockId);
           scope.editor = new MediumEditor('.block-id-' + scope.blockId);
+          scope.editor.subscribe('editableInput', function () {
+            scope.$emit('template-changed');
+          });
         } else if (scope.editor){
           scope.editor.destroy();
         }
