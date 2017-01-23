@@ -5,6 +5,7 @@ var editorControllers = angular.module('editorControllers', [
 editorControllers.controller('editorController', ['$scope', '$stateParams', 'editorService',	function($scope, $stateParams, editorService){
 
   var template = editorService.get($stateParams.id);
+  $scope.rules = editorService.rules;
   $scope.content = template.content;
   $scope.editing = false;
 

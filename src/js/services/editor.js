@@ -20,6 +20,33 @@ editorServices.factory('editorService', ['$rootScope',
         SAVE: 'save-template'
       };
 
+      this.rules = {
+        text: {
+          toolbar: {
+            buttons: ['bold', 'italic', 'underline', 'h2', 'h3'],
+          },
+          placeholder: {
+            text: 'Click to edit'
+          }
+        },
+        image: {
+          toolbar: {
+            buttons: ['anchor'],
+          },
+          placeholder: {
+            text: 'Click to edit'
+          }
+        },
+        link: {
+          toolbar: {
+            buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3'],
+          },
+          placeholder: {
+            text: 'Click to edit'
+          }
+        }
+      };
+
       this.get = function(id){
         return _.find(this.templates, function(template){
           return template.id === id;
@@ -61,17 +88,17 @@ editorServices.factory('editorService', ['$rootScope',
   }
 ]);
 
-var testTemplate = `<div class="block">
+var testTemplate = `<div class="region">
   <h2>My Text One</h2>
-  <p>1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p class="blocks-editable-text">1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </div>
 <hr>
-<div class="block">
+<div class="region">
   <h2>My Text Two</h2>
   <p>2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </div>
 <hr>
-<div class="block">
+<div class="region">
   <h2>My Text Three</h2>
   <p>3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </div>`;
@@ -102,7 +129,7 @@ var testTemplate2 = `
           </td>
         </tr>
         <tr>
-          <td valign="top" class="block" style="padding:30px 30px 20px">
+          <td valign="top" class="region" style="padding:30px 30px 20px">
             <a target="_blank" href="http://azbigmedia.com/vote-ranking-arizona" style="text-decoration:none;outline:none;border:none;"><img class="image_fix" src="http://esserdesign.com/eblast/20160713/images/headline.png" alt="Just Click and Vote at RankingArizona.com" /></a>
           </td>
         </tr>
@@ -111,13 +138,13 @@ var testTemplate2 = `
           <td valign="top" style="padding:0 30px 30px">
             <table cellspacing="0" cellpadding="0" border="0" style="width:540px;border-collapse: collapse; border-spacing:0;">
               <tr>
-                <td class="block">
+                <td class="region">
                   <a target="_blank" href="tel:6022579790"><img style="width:180px;height:30px" src="http://esserdesign.com/eblast/20160713/images/phone.png" alt="602-257-9790" /></a>
                 </td>
-                <td class="block">
+                <td class="region">
                   <a target="_blank" href="mailto:pamela@esserdesign.com"><img style="width:180px;height:30px" src="http://esserdesign.com/eblast/20160713/images/email.png" alt="pamela@esserdesign.com" /></a>
                 </td>
-                <td class="block">
+                <td class="region">
                   <a target="_blank" href="http://esserdesign.com"><img style="width:180px;height:30px" src="http://esserdesign.com/eblast/20160713/images/website.png" alt="http://esserdesign.com" /></a>
                 </td>
               </tr>
@@ -129,15 +156,15 @@ var testTemplate2 = `
           <td valign="top" style="padding:0 30px 30px">
             <table cellspacing="0" cellpadding="0" border="0" style="width:540px;border-collapse: collapse; border-spacing:0;">
               <tr>
-                <td class="block" style="width:260px;" valign="top">
-                  <a target="_blank" href="http://esserdesign.com/#!/projects/branding/829"><img class="image_fix" src="http://esserdesign.com/eblast/20160713/images/branding.jpg" alt="Branding: Arizona State University" /></a>
-                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px" class="editable-text">Arizona State University</h2>
-                  <a target="_blank" href="http://esserdesign.com/#!/projects/branding/829" style="color:#D9531E; font-size:13px; text-decoration:none">See More &raquo; </a>
+                <td class="region" style="width:260px;" valign="top">
+                  <a target="_blank" href="http://esserdesign.com/#!/projects/branding/829" class="blocks-editable-image"><img class="image_fix" src="http://esserdesign.com/eblast/20160713/images/branding.jpg" alt="Branding: Arizona State University" /></a>
+                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px" class="blocks-editable-text">Arizona State University</h2>
+                  <a target="_blank" href="http://esserdesign.com/#!/projects/branding/829" style="color:#D9531E; font-size:13px; text-decoration:none" class="blocks-editable-link">See More &raquo; </a>
                 </td>
                 <td style="width:20px;">&nbsp;</td>
-                <td class="block" style="width:260px;" valign="top">
-                  <a target="_blank" href="http://esserdesign.com/#!/projects/Packaging/776"><img class="image_fix" src="http://esserdesign.com/eblast/20160713/images/packaging.jpg" alt="Packaging: Essence Bakery Cafe" /></a>
-                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px" class="editable-text">Essence Bakery Cafe</h2>
+                <td class="region" style="width:260px;" valign="top">
+                  <a target="_blank" href="http://esserdesign.com/#!/projects/Packaging/776" class="blocks-editable-image"><img class="image_fix" src="http://esserdesign.com/eblast/20160713/images/packaging.jpg" alt="Packaging: Essence Bakery Cafe" /></a>
+                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px" class="blocks-editable-text">Essence Bakery Cafe</h2>
                   <a target="_blank" href="http://esserdesign.com/#!/projects/Packaging/776" style="color:#D9531E; font-size:13px; text-decoration:none">See More &raquo;</a>
                 </td>
               </tr>
@@ -149,15 +176,15 @@ var testTemplate2 = `
           <td valign="top" style="padding:0 30px 30px">
             <table cellspacing="0" cellpadding="0" border="0" style="width:540px;border-collapse: collapse; border-spacing:0;">
               <tr>
-                <td class="block" style="width:260px;" valign="top">
-                  <a target="_blank" href="http://esserdesign.com/#!/projects/Print/770"><img class="image_fix" src="http://esserdesign.com/eblast/20160713/images/print.jpg" alt="Print: City of Phoenix" /></a>
-                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px" class="editable-text">City of Phoenix</h2>
+                <td class="region" style="width:260px;" valign="top">
+                  <a target="_blank" href="http://esserdesign.com/#!/projects/Print/770" class="blocks-editable-image"><img class="image_fix" src="http://esserdesign.com/eblast/20160713/images/print.jpg" alt="Print: City of Phoenix" /></a>
+                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px" class="blocks-editable-text">City of Phoenix</h2>
                   <a target="_blank" href="http://esserdesign.com/#!/projects/Print/770" style="color:#D9531E; font-size:13px; text-decoration:none">See More &raquo; </a>
                 </td>
                 <td style="width:20px;">&nbsp;</td>
-                <td class="block" style="width:260px;" valign="top">
-                  <a target="_blank" href="http://esserdesign.com/#!/projects/websites/1935"><img class="image_fix" src="http://esserdesign.com/eblast/20160713/images/websites.jpg" alt="Websites: LGE Design Build" /></a>
-                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px" class="editable-text">LGE Design Build</h2>
+                <td class="region" style="width:260px;" valign="top">
+                  <a target="_blank" href="http://esserdesign.com/#!/projects/websites/1935" class="blocks-editable-image"><img class="image_fix" src="http://esserdesign.com/eblast/20160713/images/websites.jpg" alt="Websites: LGE Design Build" /></a>
+                  <h2 style="font-weight:normal;font-size:18px;margin-bottom:8px;line-height:22px" class="blocks-editable-text">LGE Design Build</h2>
                   <a target="_blank" href="http://esserdesign.com/#!/projects/websites/1935" style="color:#D9531E; font-size:13px; text-decoration:none">See More &raquo;</a>
                 </td>
               </tr>

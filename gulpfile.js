@@ -81,7 +81,8 @@ gulp.task('fonts', function () {
 // build styles
 gulp.task('css', function () {
   return gulp.src([
-    'node_modules/medium-editor/dist/css/medium-editor.min.css',
+    'node_modules/medium-editor/dist/css/medium-editor.css',
+    'node_modules/medium-editor/dist/css/themes/beagle.css',
     'src/css/**/*.css'
   ])
     .pipe(sass.sync()
