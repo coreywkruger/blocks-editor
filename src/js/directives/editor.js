@@ -20,13 +20,30 @@ editorDirectives.directive('editor', ['$compile', function($compile) {
       // get all editable regions
       var regions = element.find('.region');
       
+      angular.forEach(regions, function(region){
+        region = $(region);
+        region
+          .mouseover(function(e){
+            if(!scope.editing){
+              $('.region-hover').removeClass('region-hover'); 
+              region.addClass('region-hover');
+            }
+          })
+          .mouseout(function(e){
+            if(!scope.editing){
+              region.removeClass('region-hover');
+            }
+          });
+      });
+
       scope.$watch('editing', function(newVal){
         if(newVal){
           // apply new editors
           angular.forEach(regions, function(region){
-            scope.applyEditor('.blocks-editable-text', $(region), scope.rules.text);
-            scope.applyEditor('.blocks-editable-image', $(region), scope.rules.image);
-            scope.applyEditor('.blocks-editable-link', $(region), scope.rules.link);
+            region = $(region);
+            scope.applyEditor('.blocks-editable-text', region, scope.rules.text);
+            scope.applyEditor('.blocks-editable-image', region, scope.rules.image);
+            scope.applyEditor('.blocks-editable-link', region, scope.rules.link);
           });
         } else {
           // remove all editors
