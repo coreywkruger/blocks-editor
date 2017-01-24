@@ -5,10 +5,10 @@ headerControllers.controller('headerController', ['$scope', '$stateParams', 'edi
   console.log('header');
   
   $scope.importedTemplate = {};
-  $scope.$watch('importedTemplate.name', function(newVal){
-    console.log(newVal, $scope.importedTemplate);
-    editorService.startImport($scope.importedTemplate);
-  });
+
+  $scope.fileChanged = function(input){
+    editorService.startImport(input.files[0]);
+  };
 
   $scope.edit = function(){
     editorService.startEdit($stateParams.id);

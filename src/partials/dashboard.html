@@ -12,24 +12,49 @@
         <form enctype="multipart/form-data">
             <table class="newoptions">
                 <tr>
-                    <td class="title"><input type="text" name="title" value="" placeholder="Title" /></td>
-                    <td class="title"><input type="file" name="template" value=""/></td>
+                    <td class="title"><input type="text" name="title" value="" placeholder="Title" ng-model="title"/></td>
+                    <!--<td class="title"><input type="file" name="template" value=""/></td>-->
                     <td class="options">
-                        <input type="hidden" name="new_template" value="1" />
-                        <input type="submit" value="Save" class="btn-main" />
-                        <input type="submit" value="Cancel" class="btn-alt cancel_template" />
+                        <!--<input type="hidden" name="new_template" value="1" />-->
+                        <input type="submit" value="Save" class="btn-main" ng-click="uploadFile()"/>
+                        <input type="submit" value="Cancel" class="btn-alt cancel_template" ng-click="cancelUpload()"/>
                     </td>
                 </tr>
-                <tr class="upload_template_error"><td></td><td></td><td></td></tr>
+                <!--<tr class="upload_template_error"><td></td><td></td><td></td></tr>-->
             </table>
         </form>
     </header>
 </section>
 
-<section class="container template">
+<section class="container template" ng-repeat="template in templates">
+    <header>
+        <div class="preview preview-container">
+            <iframe scrolling="no" src=""></iframe><!-- <?php echo $this->uri ?>/screenshot/<?php echo $newsletter['tmp_id']; ?> -->
+        </div>
+        <h1>{{template.title}}</h1>
+        <ul class="people">
+                <li><!-- user in template.users -->
+                    <!--<div class="person" title="<?php echo $user['usr_name']; ?>">-->
+                        <!--<?php
+                        $words = explode(' ', $user['usr_name']);
+                        foreach ($words as $word) {
+                            echo strtoupper($word[0]);
+                        }
+                        ?>-->
+                    <!--</div>-->
+                    <img title="JD" class="person" src="" /><!-- <?php echo $this->uri ?>/avatars/<?php echo $user['usr_avatar']; ?> -->
+                    <img title="JD" class="person" src="" />
+                    <img title="JD" class="person" src="" />
+                </li>
+            <li><a href="" class="btn-alt people">Invite/remove editors</a></li><!-- <?php echo $this->uri ?>/people/<?php echo $newsletter['tmp_id']; ?> -->
+        </ul>
+        <ul class="template-options">
+            <li><a href="#" class="btn-main add_email" data-id="<?php echo $newsletter['tmp_id']; ?>">New email</a></li>
+        </ul>
+    </header>
     <form action="">
         <table class="emails">
-            <tr ng-repeat="template in templates">
+            <tr>
                 <td class="title"><h2><a href="" ng-click="edit(template.id)">{{template.title}}</a></h2></td>
                 <td class="updated">
                 </td>

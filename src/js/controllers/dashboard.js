@@ -2,7 +2,7 @@ var dashboardControllers = angular.module('dashboardControllers', [
   'editorServices'
 ]);
 
-dashboardControllers.controller('dashboardController', ['$scope',	'$state', 'Upload', 'editorService', function($scope, $state, Upload, editorService){
+dashboardControllers.controller('dashboardController', ['$scope',	'$state', 'editorService', function($scope, $state, editorService){
 
   $scope.templates = editorService.templates;
 
@@ -12,8 +12,16 @@ dashboardControllers.controller('dashboardController', ['$scope',	'$state', 'Upl
     });
   };
 
-  $scope.finishImport = function(){
+  $scope.title = '';
 
+  $scope.uploadFile = function(){
+    var reader = new FileReader();
+    reader.onload = function(e){
+      $scope.$apply(function(){
+        editorService.create($scope.title, reader.result);
+      });
+    };
+    reader.readAsText(editorService.importedTemplateFile);
   };
 
   $scope.duplicate = function(id){

@@ -3,7 +3,7 @@
     <form enctype="multipart/form-data" id="import" name="importForm">
       <span class="btn-txt btn-icon add">
         <span>Import new template</span>
-        <input type="file" name="template" ng-model="importedTemplate" ngf-select>
+        <input type="file" name="template" ng-model="importedTemplate" onchange="angular.element(this).scope().fileChanged(this)">
       </span>
     </form>
     <div class="profile-toggle">

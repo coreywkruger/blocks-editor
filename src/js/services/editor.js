@@ -33,17 +33,17 @@ editorServices.factory('editorService', ['$rootScope',
         this.templates[index].content = newContent;
       };
 
-      this.create = function(title){
-        var newTemplate = _.merge({
-          id: Date.now(),
-          title: Title
-        }, this.newTemplate);
-        this.templates.push(this.newTemplate);
-        this.newTemplate = {};
+      this.create = function(title, content){
+        var newTemplate = {
+          id: Date.now().toString(),
+          title: title,
+          content: content
+        };
+        this.templates.push(newTemplate);
       };
 
-      this.startImport = function(importedTemplate){
-        this.importedTemplate = importedTemplate;
+      this.startImport = function(importedTemplateFile){
+        this.importedTemplateFile = importedTemplateFile;
       };
 
       this.startEdit = function(id){

@@ -1,7 +1,3 @@
-body {
-  margin: 0;
-}
-
 .editor-header {
     /* From Core */
     -webkit-box-sizing: border-box;
@@ -44,6 +40,7 @@ body {
   transition: all 200ms ease; }
 
 .editor-header .options {
+    margin: 15px;
     position: absolute;
     top: 9px;
     right: 60px;
