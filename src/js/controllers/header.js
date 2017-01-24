@@ -4,13 +4,19 @@ headerControllers.controller('headerController', ['$scope', '$stateParams', 'edi
 
   console.log('header');
   
+  $scope.importedTemplate = {};
+  $scope.$watch('importedTemplate.name', function(newVal){
+    console.log(newVal, $scope.importedTemplate);
+    editorService.startImport($scope.importedTemplate);
+  });
+
   $scope.edit = function(){
-    editorService.edit($stateParams.id);
+    editorService.startEdit($stateParams.id);
   };
   $scope.cancel = function(){
-    editorService.cancel($stateParams.id);
+    editorService.startCancel($stateParams.id);
   };
   $scope.save = function(){
-    editorService.save($stateParams.id);
+    editorService.startSave($stateParams.id);
   };
 }]);

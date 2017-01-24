@@ -6,6 +6,7 @@ var app = angular.module('bdApp', [
   'editorDirectives',
   'headerControllers',
   'templates',
+  'ngFileUpload',
   'ui.router'
 ]);
 

@@ -20,6 +20,44 @@ editorServices.factory('editorService', ['$rootScope',
         SAVE: 'save-template'
       };
 
+      this.get = function(id){
+        return _.find(this.templates, function(template){
+          return template.id === id;
+        });
+      };
+
+      this.update = function(id, newContent){
+        var index =_.findIndex(this.templates, function(template){
+          return template.id === id;
+        });
+        this.templates[index].content = newContent;
+      };
+
+      this.create = function(title){
+        var newTemplate = _.merge({
+          id: Date.now(),
+          title: Title
+        }, this.newTemplate);
+        this.templates.push(this.newTemplate);
+        this.newTemplate = {};
+      };
+
+      this.startImport = function(importedTemplate){
+        this.importedTemplate = importedTemplate;
+      };
+
+      this.startEdit = function(id){
+        $rootScope.$broadcast(this.events.EDITING, this.get(id));
+      };
+
+      this.startCancel = function(id){
+        $rootScope.$broadcast(this.events.CANCEL, this.get(id));
+      };
+
+      this.startSave = function(id){
+        $rootScope.$broadcast(this.events.SAVE, this.get(id));
+      };
+
       this.rules = {
         text: {
           toolbar: {
@@ -45,44 +83,6 @@ editorServices.factory('editorService', ['$rootScope',
             text: 'Click to edit'
           }
         }
-      };
-
-      this.get = function(id){
-        return _.find(this.templates, function(template){
-          return template.id === id;
-        });
-      };
-
-      this.bocks = [];
-      this.registerBlock = function(id){
-        if(!_.find(this.blocks, function(blockId){
-          return blockId === id;
-        })){
-          this.blocks.push(id);  
-        }
-      };
-
-      this.clearBlocks = function(){
-        this.blocks = [];
-      };
-
-      this.edit = function(id){
-        $rootScope.$broadcast(this.events.EDITING, this.get(id));
-      };
-
-      this.cancel = function(id){
-        $rootScope.$broadcast(this.events.CANCEL, this.get(id));
-      };
-
-      this.save = function(id){
-        $rootScope.$broadcast(this.events.SAVE, this.get(id));
-      };
-
-      this.update = function(id, newContent){
-        var index =_.findIndex(this.templates, function(template){
-          return template.id === id;
-        });
-        this.templates[index].content = newContent;
       };
     };
   }

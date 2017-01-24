@@ -1,5 +1,11 @@
-<header class="editor-header" ng-controller="headerController">    
+<header class="editor-header" ng-controller="headerController">
     <a ui-sref="dashboard" class="header-logo">Blocks Edit</a>
+    <form enctype="multipart/form-data" id="import" name="importForm">
+      <span class="btn-txt btn-icon add">
+        <span>Import new template</span>
+        <input type="file" name="template" ng-model="importedTemplate" ngf-select>
+      </span>
+    </form>
     <div class="profile-toggle">
         <a href="" class="person">
             CK

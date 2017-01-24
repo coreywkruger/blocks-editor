@@ -2,7 +2,7 @@ var dashboardControllers = angular.module('dashboardControllers', [
   'editorServices'
 ]);
 
-dashboardControllers.controller('dashboardController', ['$scope',	'$state', 'editorService', function($scope, $state, editorService){
+dashboardControllers.controller('dashboardController', ['$scope',	'$state', 'Upload', 'editorService', function($scope, $state, Upload, editorService){
 
   $scope.templates = editorService.templates;
 
@@ -10,6 +10,10 @@ dashboardControllers.controller('dashboardController', ['$scope',	'$state', 'edi
     $state.go('editor', {
       id: id
     });
+  };
+
+  $scope.finishImport = function(){
+
   };
 
   $scope.duplicate = function(id){
