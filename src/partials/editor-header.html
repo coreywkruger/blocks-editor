@@ -1,12 +1,12 @@
-<header id="global" ng-controller="headerController">
-    <a href="" id="logo">Blocks Edit</a>
+<header class="editor-header" ng-controller="headerController">    
+    <a ui-sref="dashboard" class="header-logo">Blocks Edit</a>
 
-    <ul class="">
+    <ul class="options" ng-show="!editing">
         <li><a href="" id="mode" class="btn-edit start_editing" ng-click="edit()">Edit</a></li>
         <li><a href="" class="btn-icon export show-export">Export</a></li>
         <li><a href="" class="btn-icon link show-share">Share</a></li>
     </ul>
-    <ul class="">
+    <ul class="options" ng-show="editing">
         <li><a href="" id="mode" class="btn-main save_template" ng-click="save()">Save</a></li>
         <li><a href="" class="btn-icon remove cancel_changes" ng-click="cancel()">Cancel Changes</a></li>
     </ul>

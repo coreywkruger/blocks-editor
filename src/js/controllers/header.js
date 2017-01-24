@@ -3,7 +3,7 @@ var headerControllers = angular.module('headerControllers', []);
 headerControllers.controller('headerController', ['$scope', '$stateParams', 'editorService',	function($scope, $stateParams, editorService){
 
   console.log('header');
-
+  
   $scope.edit = function(){
     editorService.edit($stateParams.id);
   };

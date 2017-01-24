@@ -2,7 +2,7 @@ var editorControllers = angular.module('editorControllers', [
   'editorServices'
 ]);
 
-editorControllers.controller('editorController', ['$scope', '$stateParams', 'editorService',	function($scope, $stateParams, editorService){
+editorControllers.controller('editorController', ['$scope', '$state', '$stateParams', 'editorService',	function($scope, $state, $stateParams, editorService){
 
   var template = editorService.get($stateParams.id);
   $scope.rules = editorService.rules;

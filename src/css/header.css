@@ -1,0 +1,264 @@
+body {
+  margin: 0;
+}
+
+.editor-header {
+    /* From Core */
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
+    line-height: 1.2em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: .4px;
+    cursor: default;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    display: inline-block;
+    margin-bottom: 30px;
+    width: 100%;
+    height: 67px;
+    background-color: #111;
+    padding: 14px 20px;
+    text-align: left;
+    /* END From Core */
+    /*position: fixed;*/
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+    z-index: 100; }
+.editor-header .header-logo {
+  display: inline-block;
+  margin-right: 20px;
+  border: #D34B52 2px solid;
+  padding: 6px;
+  color: #D34B52;
+  font-weight: 400;
+  font-size: 26px;
+  transition: all 200ms ease; }
+
+.editor-header .options {
+    position: absolute;
+    top: 9px;
+    right: 60px;
+    margin-right: 30px;
+    vertical-align: middle;
+    list-style: none;
+}
+
+.editor-header #import {
+  display: inline-block; }
+  .editor-header #import .btn-icon.add {
+    display: inline-block;
+    position: relative;
+    top: -2px;
+    height: 20px;
+    font-weight: 400;
+    transition: all 200ms ease;
+    color: #0fAAD1;
+    overflow: hidden; }
+    .editor-header #import .btn-icon.add:before {
+      top: 2px;
+      font-size: 20px; }
+    .editor-header #import .btn-icon.add input {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      opacity: 0;
+      font-size: 200px;
+      direction: ltr;
+      cursor: pointer; }
+.editor-header #profile, .editor-header .profile-toggle {
+  float: right;
+  margin-top: 5px;
+  padding-left: 20px; }
+  .editor-header #profile:hover, .editor-header .profile-toggle:hover {
+    cursor: pointer; }
+  .editor-header #profile .person, .editor-header .profile-toggle .person {
+    overflow: hidden; }
+    .editor-header #profile .person:before, .editor-header .profile-toggle .person:before {
+      content: '';
+      position: absolute;
+      margin-top: 12px;
+      margin-left: -20px;
+      border-color: #bbb transparent transparent transparent;
+      border-width: 5px;
+      border-style: solid; }
+    .editor-header #profile .person img, .editor-header .profile-toggle .person img {
+      width: 100%;
+      height: 100%; }
+  .editor-header #profile .profileoptions, .editor-header .profile-toggle .profileoptions {
+    display: none;
+    position: absolute;
+    right: 10px;
+    border-radius: 2px;
+    margin-top: 10px;
+    width: 150px;
+    background-color: #eee;
+    padding: 10px;
+    list-style: none;
+    font-size: 14px; }
+    .editor-header #profile .profileoptions:before, .editor-header .profile-toggle .profileoptions:before {
+      content: '';
+      position: absolute;
+      top: -13px;
+      right: 23px;
+      margin-left: -7px;
+      border-color: transparent transparent #eee transparent;
+      border-width: 7px;
+      border-style: solid; }
+.editor-header a {
+  color: #0fAAD1;
+  text-decoration: none;
+  transition: all 200ms ease; }
+.editor-header .btn-main {
+  display: inline-block;
+  border-radius: 5px;
+  border: 0;
+  border-bottom-width: 2px;
+  background: -webkit-linear-gradient(#18C2DC, #0fAAD1);
+  padding: 0 10px;
+  color: #EEEEEE;
+  line-height: 30px;
+  font-weight: 400; }
+  .editor-header .btn-main.disabled {
+    background: -webkit-linear-gradient(#aaa, #ddd);
+    color: #777; }
+.editor-header .btn-alt {
+  display: inline-block;
+  border-radius: 5px;
+  border: 0;
+  border-bottom-width: 2px;
+  background: -webkit-linear-gradient(#FFFFFF, #EEEEEE);
+  padding: 0 10px;
+  color: #222222;
+  line-height: 30px;
+  font-weight: 400; }
+  .editor-header .btn-alt.disabled {
+    background: none;
+    color: #aaa; }
+    .editor-header .btn-alt.disabled:hover {
+      cursor: default; }
+.editor-header .btn-edit {
+  display: inline-block;
+  border-radius: 5px;
+  border: 0;
+  border-bottom-width: 2px;
+  background: -webkit-linear-gradient(#D34B52, #D34A7E);
+  padding: 0 10px;
+  color: #EEEEEE;
+  line-height: 30px;
+  font-weight: 400; }
+.editor-header .btn-icon {
+  font-weight: 400; }
+  .editor-header .btn-icon:before {
+    font-family: 'Blocks Editor';
+    position: relative;
+    top: 1px;
+    margin-right: 5px;
+    font-weight: 100; }
+.editor-header .btn-icon.notify:before {
+  content: 't'; }
+.editor-header .btn-icon.pin:before {
+  content: 'p'; }
+.editor-header .btn-icon.add:before {
+  content: '+'; }
+.editor-header .btn-icon.remove:before {
+  content: 'x'; }
+.editor-header .btn-icon.check:before {
+  content: 'y'; }
+.editor-header .btn-icon.new:before {
+  content: 'd'; }
+.editor-header .btn-icon.copy:before {
+  content: 'c'; }
+.editor-header .btn-icon.edit:before {
+  content: 'e'; }
+.editor-header .btn-icon.link:before {
+  content: 'l'; }
+.editor-header .btn-icon.export:before {
+  content: 's'; }
+.editor-header .person {
+  display: inline-block;
+  margin-right: 5px;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  background: -webkit-linear-gradient(#67CF96, #91CF5C);
+  vertical-align: middle;
+  text-align: center;
+  line-height: 30px;
+  font-weight: 500;
+  color: #fff;
+  font-size: 14px; }
+.editor-header #mode {
+  vertical-align: middle;
+  margin-top: -4px;
+  margin-right: 10px;
+  border-radius: 10px;
+  border-bottom-width: 4px;
+  padding: 7px 15px;
+  font-size: 24px;
+  font-weight: 500;
+  text-transform: uppercase; }
+.editor-header .title, .editor-header .options {
+  display: inline-block; }
+.editor-header .title {
+  margin-top: -4px;
+  vertical-align: middle; }
+  .editor-header .title h1 {
+    /* From Core */
+    font-size: 24px;
+    color: #7383D0;
+    font-weight: 400;
+    line-height: 40px;
+    margin-top: -10px;
+    /* END From Core */
+    margin: 0;
+    margin-top: -2px;
+    background: -webkit-linear-gradient(#fff, #eee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2em;
+    font-weight: 300; }
+  .editor-header .title h2 {
+    /* From Core */
+    font-size: 18px;
+    color: #555;
+    font-weight: 400;
+    line-height: 30px;
+    /* END From Core */
+    margin: 0;
+    background: -webkit-linear-gradient(#fff, #eee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2em;
+    font-weight: 300; }
+.editor-header .options {
+  position: absolute;
+  top: 9px;
+  right: 60px;
+  margin-right: 30px;
+  vertical-align: middle;
+  list-style: none; }
+  .editor-header .options li {
+    float: left;
+    margin-right: 20px; }
+    .editor-header .options li a.btn-edit, .editor-header .options li a.btn-main {
+      position: relative;
+      top: -9px; }
+    .editor-header .options li a.export:before {
+      top: 0;
+      font-size: 14px; }
+    .editor-header .options li a.link:before {
+      top: 0;
+      font-size: 15px; }
+    .editor-header .options li a.remove:before {
+      top: 3px;
+      font-size: 23px; }
