@@ -26,6 +26,12 @@ dashboardControllers.controller('dashboardController', ['$scope', '$rootScope',	
     });
   };
 
+  $scope.cancelUpload = function(){
+    $scope.uploading = false;
+    $scope.title = '';
+    $scope.file = undefined;
+  };
+
   $scope.duplicate = function(id){
     console.log('duplicate', id);
   };

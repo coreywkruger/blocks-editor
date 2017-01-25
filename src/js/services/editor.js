@@ -6,12 +6,14 @@ editorServices.factory('editorService', ['$rootScope', '$q',
 
       this.templates = [{
         title: 'Email One',
-        id: '1',
-        content: testTemplate
+        id: Date.now().toString(),
+        content: testTemplate,
+        created_at: Date.now()
       }, {
         title: 'Email Two',
-        id: '2',
-        content: testTemplate2
+        id: Date.now().toString(),
+        content: testTemplate2,
+        created_at: Date.now()
       }];
 
       this.events = {
@@ -38,7 +40,8 @@ editorServices.factory('editorService', ['$rootScope', '$q',
         var newTemplate = {
           id: Date.now().toString(),
           title: title,
-          content: content
+          content: content,
+          created_at: Date.now()
         };
         this.templates.push(newTemplate);
       };

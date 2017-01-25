@@ -58,15 +58,19 @@
     <form action="">
         <table class="emails">
             <tr>
-                <td class="title"><h2><a href="" ng-click="edit(template.id)">{{template.title}}</a></h2></td>
+                <td class="title"><h2><a href="" ng-click="edit(template.id)">{{template.created_at | date:'MMM d, y h:mm a'}}</a></h2></td>
                 <td class="updated">
                 </td>
                 <td class="actions">
                     <ul>
-                        <li><a href="" title="Duplicate" class="btn-icon copy duplicate-email" ng-click="duplicate(template.id)"><span>Duplicate</span></a></li>
-                        <li><a href="" title="Export" class="btn-icon export show-export" ng-click="export(template.id)"><span>Export</span></a></li>
-                        <li><a href="" title="Share" class="btn-icon link show-share" ng-click="share(template.id)"><span>Share</span></a></li>
-                        <li><a href="" title="Delete" class="btn-icon remove show-delete" ng-click="delete(template.id)"><span>Delete</span></a></li>
+                        <li><a href="" title="Duplicate" class="btn-icon copy duplicate-email" 
+                            ng-click="duplicate(template.id)"><span>Duplicate</span></a></li>
+                        <li><a href="" title="Export" class="btn-icon export show-export" 
+                            ng-click="export(template.id)"><span>Export</span></a></li>
+                        <li><a href="" title="Share" class="btn-icon link show-share" 
+                            ng-click="share(template.id)"><span>Share</span></a></li>
+                        <li><a href="" title="Delete" class="btn-icon remove show-delete" 
+                            ng-click="delete(template.id)"><span>Delete</span></a></li>
                     </ul>
                 </td>
             </tr>
