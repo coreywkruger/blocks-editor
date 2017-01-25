@@ -5,7 +5,7 @@ var app = angular.module('bdApp', [
   'blockDirectives',
   'editorDirectives',
   'headerControllers',
-  'fileUploadDirectives',
+  'fileDirectives',
   'fileServices',
   'templates',
   'ui.router'

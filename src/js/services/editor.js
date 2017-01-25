@@ -11,7 +11,7 @@ editorServices.factory('editorService', ['$rootScope', '$q',
         created_at: Date.now()
       }, {
         title: 'Email Two',
-        id: Date.now().toString(),
+        id: (Date.now() + 1000).toString(),
         content: testTemplate2,
         created_at: Date.now()
       }];
@@ -44,18 +44,6 @@ editorServices.factory('editorService', ['$rootScope', '$q',
           created_at: Date.now()
         };
         this.templates.push(newTemplate);
-      };
-
-      this.startEdit = function(id){
-        $rootScope.$broadcast(this.events.EDITING, this.get(id));
-      };
-
-      this.startCancel = function(id){
-        $rootScope.$broadcast(this.events.CANCEL, this.get(id));
-      };
-
-      this.startSave = function(id){
-        $rootScope.$broadcast(this.events.SAVE, this.get(id));
       };
 
       this.rules = {

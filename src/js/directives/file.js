@@ -1,6 +1,6 @@
-var fileUploadDirectives = angular.module('fileUploadDirectives', []);
+var fileDirectives = angular.module('fileDirectives', []);
 
-fileUploadDirectives.directive('fileUpload', function() {
+fileDirectives.directive('fileUpload', function() {
   return {
     replace: true,
     restrict: 'EA',
@@ -17,3 +17,30 @@ fileUploadDirectives.directive('fileUpload', function() {
     }
   };
 });
+
+fileDirectives.directive('download', function(){
+  return {
+    replace: true,
+    restrict: 'EA',
+    scope: {
+      content: '=',
+      name: '='
+    },
+    link: function(scope, element){
+      var a = element[0];
+      var blob = new Blob([scope.content], {
+        'type': 'text/plain;charset=utf-8' // 'application/octet-stream'
+      });
+      a.href = URL.createObjectURL(blob);
+      a.download = `${scope.name}.txt`;
+    }
+  };
+});
+
+function str2bytes(str){
+  var bytes = new Uint8Array(str.length);
+  for (var i=0; i<str.length; i++) {
+    bytes[i] = str.charCodeAt(i);
+  }
+  return bytes;
+}
