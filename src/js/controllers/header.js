@@ -1,14 +1,14 @@
 var headerControllers = angular.module('headerControllers', []);
 
-headerControllers.controller('headerController', ['$scope', '$stateParams', 'editorService',	function($scope, $stateParams, editorService){
+headerControllers.controller('headerController', ['$scope', '$rootScope', '$stateParams', 'editorService',	function($scope, $rootScope, $stateParams, editorService){
 
   console.log('header');
   
-  $scope.importedTemplate = {};
-
-  $scope.fileChanged = function(input){
-    editorService.startImport(input.files[0]);
-  };
+  // $scope.importedTemplate = {};
+  
+  // $scope.fileChanged = function(file){
+  //   editorService.startImport(file);
+  // };
 
   $scope.edit = function(){
     editorService.startEdit($stateParams.id);

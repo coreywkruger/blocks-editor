@@ -5,6 +5,8 @@ var app = angular.module('bdApp', [
   'blockDirectives',
   'editorDirectives',
   'headerControllers',
+  'fileUploadDirectives',
+  'fileServices',
   'templates',
   'ui.router'
 ]);
@@ -42,8 +44,5 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
 }]);
 
 app.run(['$state', '$rootScope', ($state, $rootScope) => {
-  $rootScope.$on('$stateChangeSuccess', function(){
-    $rootScope.editorHeader = $state.current.name === 'editor';
-  });
   console.log("hello world")
 }]);

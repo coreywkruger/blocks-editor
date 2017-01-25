@@ -1,9 +1,9 @@
-<header class="editor-header" ng-controller="headerController">
+<header class="editor-header">
     <a ui-sref="dashboard" class="header-logo">Blocks Edit</a>
     <form enctype="multipart/form-data" id="import" name="importForm">
       <span class="btn-txt btn-icon add">
         <span>Import new template</span>
-        <input type="file" name="template" ng-model="importedTemplate" onchange="angular.element(this).scope().fileChanged(this)">
+        <input type="file" name="template" file-upload="fileChanged">
       </span>
     </form>
     <div class="profile-toggle">

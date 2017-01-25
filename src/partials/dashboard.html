@@ -1,12 +1,12 @@
 <ng-include src="'/partials/dashboard-header.html'"></ng-include>
-<section class="container template none">
+<!--<section class="container template none">
     <header>
         <div class="preview"></div>
         <br/>
         <p>Import your first template to get started.</p>
     </header>
-</section>
-<section class="container template new add_template_box">
+</section>-->
+<section class="container template new add_template_box" ng-show="uploading">
     <header>
         <div class="preview"></div>
         <form enctype="multipart/form-data">
@@ -32,8 +32,9 @@
             <iframe scrolling="no" src=""></iframe><!-- <?php echo $this->uri ?>/screenshot/<?php echo $newsletter['tmp_id']; ?> -->
         </div>
         <h1>{{template.title}}</h1>
-        <ul class="people">
-                <li><!-- user in template.users -->
+        <!--<ul class="people">
+                <li>-->
+                    <!-- user in template.users -->
                     <!--<div class="person" title="<?php echo $user['usr_name']; ?>">-->
                         <!--<?php
                         $words = explode(' ', $user['usr_name']);
@@ -42,11 +43,13 @@
                         }
                         ?>-->
                     <!--</div>-->
-                    <img title="JD" class="person" src="" /><!-- <?php echo $this->uri ?>/avatars/<?php echo $user['usr_avatar']; ?> -->
+                    <!-- <?php echo $this->uri ?>/avatars/<?php echo $user['usr_avatar']; ?> -->
+                    <!--<img title="JD" class="person" src="" />
                     <img title="JD" class="person" src="" />
                     <img title="JD" class="person" src="" />
                 </li>
-            <li><a href="" class="btn-alt people">Invite/remove editors</a></li><!-- <?php echo $this->uri ?>/people/<?php echo $newsletter['tmp_id']; ?> -->
+            <li><a href="" class="btn-alt people">Invite/remove editors</a></li>-->
+            <!-- <?php echo $this->uri ?>/people/<?php echo $newsletter['tmp_id']; ?> -->
         </ul>
         <ul class="template-options">
             <li><a href="#" class="btn-main add_email" data-id="<?php echo $newsletter['tmp_id']; ?>">New email</a></li>

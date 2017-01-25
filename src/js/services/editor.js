@@ -1,7 +1,7 @@
 var editorServices = angular.module('editorServices', []);
 
-editorServices.factory('editorService', ['$rootScope',
-  function($rootScope) {
+editorServices.factory('editorService', ['$rootScope', '$q',
+  function($rootScope, $q) {
     return new function(){
 
       this.templates = [{
@@ -19,6 +19,7 @@ editorServices.factory('editorService', ['$rootScope',
         CANCEL: 'stop-editing',
         SAVE: 'save-template'
       };
+      this.uploading = {status: false};
 
       this.get = function(id){
         return _.find(this.templates, function(template){
@@ -40,10 +41,6 @@ editorServices.factory('editorService', ['$rootScope',
           content: content
         };
         this.templates.push(newTemplate);
-      };
-
-      this.startImport = function(importedTemplateFile){
-        this.importedTemplateFile = importedTemplateFile;
       };
 
       this.startEdit = function(id){

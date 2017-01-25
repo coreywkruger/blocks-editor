@@ -1,8 +1,9 @@
 var dashboardControllers = angular.module('dashboardControllers', [
-  'editorServices'
+  'editorServices',
+  'fileServices'
 ]);
 
-dashboardControllers.controller('dashboardController', ['$scope',	'$state', 'editorService', function($scope, $state, editorService){
+dashboardControllers.controller('dashboardController', ['$scope', '$rootScope',	'$state', 'editorService', 'fileService', function($scope, $rootScope, $state, editorService, fileService){
 
   $scope.templates = editorService.templates;
 
@@ -12,16 +13,17 @@ dashboardControllers.controller('dashboardController', ['$scope',	'$state', 'edi
     });
   };
 
-  $scope.title = '';
+  $scope.uploading = false;
+  $scope.fileChanged = function(file){
+    $scope.uploading = true;
+    $scope.file = file;
+  };
 
+  $scope.title = '';
   $scope.uploadFile = function(){
-    var reader = new FileReader();
-    reader.onload = function(e){
-      $scope.$apply(function(){
-        editorService.create($scope.title, reader.result);
-      });
-    };
-    reader.readAsText(editorService.importedTemplateFile);
+    fileService.readAsText($scope.file, $scope).then(function(result) {
+      editorService.create($scope.title, result);
+    });
   };
 
   $scope.duplicate = function(id){
