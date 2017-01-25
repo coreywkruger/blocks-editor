@@ -5,14 +5,12 @@ fileUploadDirectives.directive('fileUpload', function() {
     replace: true,
     restrict: 'EA',
     scope: {
-      fileUpload: '='
+      fileUpload: '&'
     },
     link: function(scope, element, attributes) {
       element.bind('change', function(event){
-        scope.$apply(function(){
-          var file = file = (event.srcElement || event.target).files[0];
-          scope.fileUpload(file);
-        });
+        var file = file = (event.srcElement || event.target).files[0];
+        scope.fileUpload(file);
       });
     }
   };
