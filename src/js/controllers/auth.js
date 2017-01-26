@@ -2,18 +2,34 @@ var authControllers = angular.module('authControllers', [
   'authServices'
 ]);
 
-authControllers.controller('loginController', ['$scope', '$state', 'authService',	function($scope, $state, authService){
-  $scope.username = null;
-  $scope.password = null;
-  $scope.login = function(username, password){
-    authService.authenticate(username, password, function(err, success){
-      if(err){
-        alert(err);
-      }
+authControllers.controller('authController', ['$scope', '$state', 'authService',	function($scope, $state, authService){
+  $scope.login = function(){
+    authService.authenticate($scope.email, $scope.password).then(function(success){
       if(!success){
         alert('could not authenticate');
       }
       $state.go('dashboard');
+    }).catch(function(err){
+      if(err){
+        alert(err);
+      }
+    });
+  };
+  $scope.signup = function(){
+    authService.signup({
+      email: $scope.email,
+      password: $scope.password,
+      name: $scope.name,
+      job: $scope.job  
+    }).then(function(success){
+      if(!success){
+        alert('could not signup');
+      }
+      $state.go('login');
+    }).catch(function(err){
+      if(err){
+        alert(err);
+      }
     });
   };
 }]);

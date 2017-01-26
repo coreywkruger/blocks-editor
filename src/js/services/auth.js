@@ -1,19 +1,29 @@
-var authServices = angular.module('authServices', []);
+var authServices = angular.module('authServices', [
+  'restangularServices'
+]);
 
-authServices.factory('authService', [
-  function() {
+authServices.factory('authService', ['restangularService',
+  function(restangularService) {
     return new function(){
 
       this.user = {
-        username: null,
+        email: null,
         authenticated: false
       };
 
-      this.authenticate = function(username, password, cb){
-        // stubbed
-        this.user.username = username;
-        this.user.authenticated = true;
-        cb(null, this.user.authenticated);
+      this.authenticate = function(email, password){
+        return restangularService.one('login').post('', {
+          email: email,
+          password: password
+        }).then(function(res){
+          this.user.email = email;
+          this.user.authenticated = true;
+          return true;
+        }.bind(this));
+      };
+
+      this.signup = function(args){
+        return restangularService.one('signup').post('', args);
       };
     };
   }

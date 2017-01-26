@@ -17,11 +17,14 @@ dashboardControllers.controller('dashboardController', ['$scope', '$rootScope',	
   $scope.fileChanged = function(file){
     $scope.uploading = true;
     $scope.file = file;
+    console.log($scope.file)
   };
 
   $scope.title = '';
   $scope.uploadFile = function(){
+    console.log('here')
     fileService.readAsText($scope.file, $scope).then(function(result) {
+      console.log(result)
       editorService.create($scope.title, result);
     });
   };

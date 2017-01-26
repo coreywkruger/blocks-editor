@@ -1,6 +1,8 @@
 var app = angular.module('bdApp', [
   'editorServices',
   'editorControllers',
+  'authControllers',
+  'configServices',
   'dashboardControllers',
   'blockDirectives',
   'editorDirectives',
@@ -20,16 +22,12 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     .state('login', {
       url: '/login',
       templateUrl: '/partials/login.html',
-      controller: $scope => {
-        console.log('Login'); 
-      }
+      controller: 'authController'
     })
     .state('signup', {
       url: '/signup',
       templateUrl: '/partials/signup.html',
-      controller: $scope => {
-        console.log('signup');  
-      }
+      controller: 'authController'
     })
     .state('dashboard', {
       url: '/dashboard',

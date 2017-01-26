@@ -38,14 +38,14 @@
     "lodash": "^4.6.1",
     "medium-editor": "^5.22.1",
     "mocha": "^2.4.5",
-    "restangular": "1.5.2",
+    "restangular": "^1.6.1",
     "susy": "~2.2.2",
     "uikit": "^2.25.0"
   },
   "scripts": {
     "start": "./node_modules/.bin/gulp",
     "build": "git submodule update --init -- ./blocks-editor-demo; ./node_modules/.bin/gulp build",
-    "deploy": "npm run build; ./deploy.sh"
+    "deploy": "npm run build && ./deploy.sh"
   },
   "repository": {
     "type": "git",
