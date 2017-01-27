@@ -6,7 +6,7 @@ var app = angular.module('bdApp', [
   'dashboardControllers',
   'blockDirectives',
   'editorDirectives',
-  'headerControllers',
+  'headerTools',
   'fileDirectives',
   'fileServices',
   'templates',
@@ -16,7 +16,7 @@ var app = angular.module('bdApp', [
 app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) => {
     // $httpProvider.interceptors.push(/* */);
 
-    $urlRouterProvider.otherwise('/dashboard');
+    $urlRouterProvider.otherwise('/login');
 
     $stateProvider
     .state('login', {

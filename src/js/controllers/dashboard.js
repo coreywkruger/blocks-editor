@@ -6,28 +6,43 @@ var dashboardControllers = angular.module('dashboardControllers', [
 dashboardControllers.controller('dashboardController', ['$scope', '$rootScope',	'$state', 'editorService', 'fileService', function($scope, $rootScope, $state, editorService, fileService){
 
   $scope.templates = editorService.templates;
-
-  $scope.edit = function(id){
-    $state.go('editor', {
-      id: id
-    });
-  };
-
   $scope.uploading = false;
-  $scope.fileChanged = function(file){
+  $scope.title = '';
+  $scope.error;
+
+  $scope.fileHandler = function(file){
     $scope.uploading = true;
     $scope.file = file;
-    console.log($scope.file)
   };
 
-  $scope.title = '';
-  $scope.uploadFile = function(){
-    console.log('here')
-    fileService.readAsText($scope.file, $scope).then(function(result) {
-      console.log(result)
-      editorService.create($scope.title, result);
-    });
+  $scope.saveNewTemplate = function(){
+    fileService.readAsText($scope.file, $scope)
+      .then(function(result) {
+        editorService.create($scope.title, result)
+          .then(function(res){
+            $scope.loadTemplates();
+          })
+          .catch(function(err){
+            $scope.error = err;
+          })
+          .finally(function(){
+            $scope.title = '';
+            $scope.uploading = false;
+          });
+      });
   };
+
+  $scope.loadTemplates = function(){
+    editorService.list(true)
+      .then(function(templates){
+        $scope.templates = templates;
+      })
+      .catch(function(err){
+        $scope.error = err;
+      });
+  };
+
+  $scope.loadTemplates();
 
   $scope.cancelUpload = function(){
     $scope.uploading = false;
@@ -49,5 +64,11 @@ dashboardControllers.controller('dashboardController', ['$scope', '$rootScope',	
 
   $scope.delete = function(id){
     console.log('delete', id);
+  };
+
+  $scope.edit = function(id){
+    $state.go('editor', {
+      id: id
+    });
   };
 }]);

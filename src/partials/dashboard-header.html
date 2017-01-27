@@ -1,18 +1,10 @@
 <header id="global" class="editor-header">
     <a ui-sref="dashboard" class="header-logo">Blocks Edit</a>
     <form enctype="multipart/form-data" id="import" name="importForm">
-      <span class="btn-txt btn-icon add">
-        <span>Import new template</span>
-        <input type="file" name="template" file-upload="fileChanged">
-      </span>
+        <span class="btn-txt btn-icon add">
+            <span>Import new template</span>
+            <input type="file" name="template" file-upload="fileHandler">
+        </span>
     </form>
-    <div class="profile-toggle">
-        <a href="" class="person">
-            CK
-        </a>
-        <ul class="profileoptions">
-            <li><a href="">My profile</a></li>
-            <li><a href="">Log out</a></li>
-        </ul>
-    </div>
+    <ng-include src="'/partials/profile-header-menu.html'"></ng-include>
 </header>

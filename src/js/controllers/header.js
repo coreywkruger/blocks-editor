@@ -1,22 +1,35 @@
-var headerControllers = angular.module('headerControllers', []);
+var headerTools = angular.module('headerTools', []);
 
-headerControllers.controller('headerController', ['$scope', '$rootScope', '$stateParams', 'editorService',	function($scope, $rootScope, $stateParams, editorService){
+headerTools.controller('headerController', ['$scope', '$rootScope', '$stateParams', 'editorService',	function($scope, $rootScope, $stateParams, editorService){
 
-  console.log('header');
-  
-  // $scope.importedTemplate = {};
-  
-  // $scope.fileChanged = function(file){
-  //   editorService.startImport(file);
-  // };
-
-  $scope.edit = function(){
-    editorService.startEdit($stateParams.id);
+  $scope.showProfileOptions = false;
+  $scope.toggleProfileOptions = function(){
+    $scope.showProfileOptions = $scope.showProfileOptions ? false : true;
   };
-  $scope.cancel = function(){
-    editorService.startCancel($stateParams.id);
-  };
-  $scope.save = function(){
-    editorService.startSave($stateParams.id);
+}]);
+
+headerTools.directive('profileOptions', [function(){
+  return {
+    restrict: 'AE',
+    scope: {
+      profileOptions: '='
+    },
+    link: function(scope, element){
+      scope.$watch('profileOptions', function(newVal, oldVal){
+        if(newVal === true && newVal !== oldVal){
+          element.show();
+        } else {
+          element.hide();
+        }
+      });
+      element.mouseleave(function(e){
+        scope.$apply(function(){
+          if(scope.profileOptions === true) {
+            scope.profileOptions = false;
+            element.hide();
+          }
+        });
+      });
+    }
   };
 }]);

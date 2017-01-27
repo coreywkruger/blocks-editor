@@ -16,7 +16,7 @@
                     <!--<td class="title"><input type="file" name="template" value=""/></td>-->
                     <td class="options">
                         <!--<input type="hidden" name="new_template" value="1" />-->
-                        <input type="submit" value="Save" class="btn-main" ng-click="uploadFile()"/>
+                        <input type="submit" value="Save" class="btn-main" ng-click="saveNewTemplate()"/>
                         <input type="submit" value="Cancel" class="btn-alt cancel_template" ng-click="cancelUpload()"/>
                     </td>
                 </tr>
@@ -31,7 +31,7 @@
         <div class="preview preview-container">
             <iframe scrolling="no" src=""></iframe><!-- <?php echo $this->uri ?>/screenshot/<?php echo $newsletter['tmp_id']; ?> -->
         </div>
-        <h1>{{template.title}}</h1>
+        <h1>{{template.name}}</h1>
         <!--<ul class="people">
                 <li>-->
                     <!-- user in template.users -->
