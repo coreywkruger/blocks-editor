@@ -72,7 +72,7 @@ editorDirectives.directive('editor', ['$compile', function($compile) {
               var mappedButtons = _.map(_.intersection(classes, _.keys(this.toolbarMap)), function(className){
                 return this.toolbarMap[className];
               });
-              console.log(mappedButtons)
+
               // create unique id for new editor
               var id = 'block-editable-id-' + Math.floor(Math.random() * (100000));
               // add the class

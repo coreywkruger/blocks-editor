@@ -37,10 +37,9 @@ editorServices.factory('editorService', ['$rootScope', '$q', 'restangularService
       };
 
       this.update = function(id, newContent){
-        var index =_.findIndex(this.templates, function(template){
-          return template.id === id;
+        return this.api.one('templates').one(id).customPUT({
+          content: newContent
         });
-        this.templates[index].content = newContent;
       };
 
       this.delete = function(id){
