@@ -43,6 +43,10 @@ editorServices.factory('editorService', ['$rootScope', '$q', 'restangularService
         this.templates[index].content = newContent;
       };
 
+      this.delete = function(id){
+        return this.api.one('templates').one(id).remove();
+      };
+
       this.create = function(name, content){
         var newTemplate = {
           name: name,
@@ -51,6 +55,17 @@ editorServices.factory('editorService', ['$rootScope', '$q', 'restangularService
         return this.api.one('templates').post('', newTemplate);
       };
 
+      this.getUsers = function(id){
+        return this.api.one('templates').one(id).one('users').get();
+      };
+
+      this.toolbarMap = {
+        'blocks-edit-bold': 'bold',
+        'blocks-edit-italic': 'italic',
+        'blocks-edit-underline': 'underline',
+        'blocks-edit-h2': 'h2',
+        'blocks-edit-h3': 'h3'
+      };
       this.rules = {
         text: {
           toolbar: {

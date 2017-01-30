@@ -1,11 +1,11 @@
 <ng-include src="'/partials/dashboard-header.html'"></ng-include>
-<!--<section class="container template none">
+<section class="container template none">
     <header>
         <div class="preview"></div>
         <br/>
         <p>Import your first template to get started.</p>
     </header>
-</section>-->
+</section>
 <section class="container template new add_template_box" ng-show="uploading">
     <header>
         <div class="preview"></div>
@@ -32,24 +32,13 @@
             <iframe scrolling="no" src=""></iframe><!-- <?php echo $this->uri ?>/screenshot/<?php echo $newsletter['tmp_id']; ?> -->
         </div>
         <h1>{{template.name}}</h1>
-        <!--<ul class="people">
-                <li>-->
-                    <!-- user in template.users -->
-                    <!--<div class="person" title="<?php echo $user['usr_name']; ?>">-->
-                        <!--<?php
-                        $words = explode(' ', $user['usr_name']);
-                        foreach ($words as $word) {
-                            echo strtoupper($word[0]);
-                        }
-                        ?>-->
-                    <!--</div>-->
-                    <!-- <?php echo $this->uri ?>/avatars/<?php echo $user['usr_avatar']; ?> -->
-                    <!--<img title="JD" class="person" src="" />
-                    <img title="JD" class="person" src="" />
-                    <img title="JD" class="person" src="" />
-                </li>
-            <li><a href="" class="btn-alt people">Invite/remove editors</a></li>-->
-            <!-- <?php echo $this->uri ?>/people/<?php echo $newsletter['tmp_id']; ?> -->
+        <ul class="people">
+            <li ng-repeat="user in template.users">
+                <div class="person" title="{{user.name | initals}}">{{user.name | initals}}</div>
+            </li>
+            <li>
+                <a href="" class="btn-alt people">Invite/remove editors</a>
+            </li>
         </ul>
         <ul class="template-options">
             <li><a href="#" class="btn-main add_email" data-id="<?php echo $newsletter['tmp_id']; ?>">New email</a></li>
@@ -70,7 +59,7 @@
                         <li><a href="" title="Share" class="btn-icon link show-share" 
                             ng-click="share(template.id)"><span>Share</span></a></li>
                         <li><a href="" title="Delete" class="btn-icon remove show-delete" 
-                            ng-click="delete(template.id)"><span>Delete</span></a></li>
+                            ng-click="deleteTemplate(template.id)"><span>Delete</span></a></li>
                     </ul>
                 </td>
             </tr>

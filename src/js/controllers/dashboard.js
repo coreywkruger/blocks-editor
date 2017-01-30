@@ -36,6 +36,22 @@ dashboardControllers.controller('dashboardController', ['$scope', '$rootScope',	
     editorService.list(true)
       .then(function(templates){
         $scope.templates = templates;
+        $scope.templates.forEach(function(template){
+          editorService.getUsers(template.id)
+            .then(function(users){
+              template.users = users;
+            });
+        });
+      })
+      .catch(function(err){
+        $scope.error = err;
+      });
+  };
+
+  $scope.deleteTemplate = function(id){
+    editorService.delete(id)
+      .then(function(res){
+        $scope.loadTemplates();
       })
       .catch(function(err){
         $scope.error = err;
@@ -72,3 +88,14 @@ dashboardControllers.controller('dashboardController', ['$scope', '$rootScope',	
     });
   };
 }]);
+
+dashboardControllers.filter('initals', function(){
+  return function(value){
+    var names = value.split(' ');
+    var initials = [];
+    for(var i = 0 ; i < names.length ; i++){
+      initials.push(names[i][0].toUpperCase());
+    }
+    return initials.join();
+  }
+});
