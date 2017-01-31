@@ -24,6 +24,11 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       templateUrl: '/partials/login.html',
       controller: 'authController'
     })
+    .state('teams', {
+      url: '/teams',
+      templateUrl: '/partials/team-menu.html',
+      controller: 'teamMenuController'
+    })
     .state('signup', {
       url: '/signup',
       templateUrl: '/partials/signup.html',

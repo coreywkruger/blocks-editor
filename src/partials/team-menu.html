@@ -1,0 +1,10 @@
+<ng-include src="'/partials/login-header.html'"></ng-include>
+<section class="container account">
+    <form>
+        <h1>Choose a Team</h1>
+        <div ng-repeat="organization in organizations">
+          <input type="submit" value="{{organization.name}}" class="btn-main" ng-click="chooseTeam(organization.id)"/>
+        </div>
+        <p class="login_error"></p>
+    </form>
+</section>
