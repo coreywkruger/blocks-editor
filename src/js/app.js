@@ -40,6 +40,11 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       templateUrl: '/partials/dashboard.html',
       controller: 'dashboardController'
     })
+    .state('users', {
+      url: '/users/:id',
+      templateUrl: '/partials/users.html',
+      controller: 'usersController'
+    })
     .state('editor', {
       url: '/editor/:id',
       templateUrl: '/partials/editor.html',
@@ -48,7 +53,6 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
 }]);
 
 app.run(['$state', '$rootScope', 'authService', ($state, $rootScope, authService) => {
-  console.log(authService.getSessionHeader())
   authService.setSessionHeader(authService.getSessionHeader());
 }]);
 

@@ -66,6 +66,12 @@ dashboardControllers.controller('dashboardController', ['$scope', '$rootScope',	
     $scope.file = undefined;
   };
 
+  $scope.invite = function(id){
+    $state.go('users', {
+      id: id
+    });
+  };
+
   $scope.duplicate = function(id){
     console.log('duplicate', id);
   };
@@ -88,6 +94,35 @@ dashboardControllers.controller('dashboardController', ['$scope', '$rootScope',	
     });
   };
 }]);
+
+dashboardControllers.controller('usersController', ['$scope', '$stateParams',	'$state', 'editorService',
+  function($scope, $stateParams, $state, editorService){
+    $scope.users = [];
+    $scope.template = {};
+    $scope.loadTemplate = function(){
+      editorService
+        .get($stateParams.id, true)
+        .catch(function(err){
+          alert(err);
+        })
+        .then(function(template){
+          $scope.template = editorService.template;
+        });
+    };
+    $scope.loadUsers = function(){
+      editorService
+        .getUsers($stateParams.id)
+        .catch(function(err){
+          alert(err);
+        })
+        .then(function(users){
+          $scope.users = users;
+        });
+    };
+    $scope.loadTemplate();
+    $scope.loadUsers();
+  }
+]);
 
 dashboardControllers.filter('initals', function(){
   return function(value){

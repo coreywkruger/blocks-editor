@@ -1,0 +1,45 @@
+<ng-include src="'/partials/users-header.html'"></ng-include>
+<section class="container accounts">
+  <header>
+    <h1>{{template.name}}</h1>
+    <h2>People who can make changes to this template's emails</h2>
+  </header>
+  <form>
+    <table class="users">
+      <tr>
+        <td class="name">
+          <input name="name" type="text" placeholder="Name" 
+            ng-model="name"/>
+        </td>
+        <td class="email">
+          <input name="email" type="text" placeholder="Email address" 
+            ng-model="email"/>
+        </td>
+        <td class="jobtitle">
+          <input name="job" type="text" placeholder="Job title (optional)" 
+            ng-model="job"/>
+        </td>
+        <td class="organization">
+          <input name="organization" type="text" placeholder="Organization (optional)" 
+            ng-model="company"/>
+        </td>
+        <td class="actions"><input type="submit" value="Invite" class="btn-main" /></td>
+      </tr>
+
+      <!--<tr class="invite_error"><td>{{}}</td><td></td><td></td><td></td><td></td></tr>-->
+
+      <tr ng-repeat="user in users">
+        <td class="name">
+          <span class="person" title="{{user.name | initals}}">{{user.name | initals}}</span><span>{{user.name}}</span>
+        </td>
+        <td class="email">{{user.email}}</td>
+        <td class="jobtitle">{{user.job}}</td>
+        <td class="organization">{{user.company}}</td>
+        <!--<td class="actions">
+          <a href="" title="Remove" class="btn-icon remove remove_invite" data-rid="<?php echo $user['usr_id']; ?>" data-tid="<?php echo $this->tid; ?>">Remove</a>
+        </td>-->
+      </tr>
+
+    </table>
+  </form>
+</section>

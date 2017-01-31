@@ -8,6 +8,7 @@ authServices.factory('authService', ['restangularService', 'localStorageService'
     return new function(){
 
       this.api = restangularService;
+      this.organizations = [];
       this.user = {
         email: null,
         authenticated: false
@@ -16,7 +17,6 @@ authServices.factory('authService', ['restangularService', 'localStorageService'
         user_token: null,
         team_token: null
       };
-      this.organizations = [];
 
       this.login = function(email, password){
         return this.api
@@ -48,6 +48,22 @@ authServices.factory('authService', ['restangularService', 'localStorageService'
         return this.api
           .one('signup')
           .post('', args);
+      };
+
+      this.invite = function(name, email, job, company){
+        return this.api
+          .one('invite')
+          .post('', {
+            name: name,
+            email: email,
+            job: job,
+            company: company
+          });
+      };
+
+      this.getUsers = function(){
+        return this.api
+          .one('users').get();
       };
 
       this.setSessionHeader = function(key, type) {

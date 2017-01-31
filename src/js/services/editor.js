@@ -10,11 +10,13 @@ editorServices.factory('editorService', ['$rootScope', '$q', 'restangularService
 
       this.get = function(id, force){
         if(force){
-          return this.api.one('templates').one(id).get()
-            .then(function(data){
-              this.template = data.plain();
-              return this.template;
-            });
+          return this.api
+            .one('templates')
+            .one(id)
+            .get()
+            .then(function(template){
+              this.template = template;
+            }.bind(this));
         } else {
           var deferred = $q.defer();
           deferred.resolve(this.template);
