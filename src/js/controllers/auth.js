@@ -55,21 +55,3 @@ authControllers.controller('teamMenuController', ['$scope', '$state', 'authServi
     }
   }
 ]);
-
-authControllers.controller('inviteController', ['$scope', '$state', 'authService',
-  function($scope, $state, authService){
-    $scope.users = authService.users;
-    $scope.invite = function(name, email, job, company){
-      authService
-        .invite(name, email, job, company)
-        .then(function(){
-          alert('success')
-        })
-        .catch(function(err){
-          if(err){
-            alert(err);
-          }
-        });
-    };
-  }
-]);

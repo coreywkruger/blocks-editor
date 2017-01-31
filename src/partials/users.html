@@ -23,7 +23,9 @@
           <input name="organization" type="text" placeholder="Organization (optional)" 
             ng-model="company"/>
         </td>
-        <td class="actions"><input type="submit" value="Invite" class="btn-main" /></td>
+        <td class="actions">
+          <input type="submit" value="Invite" class="btn-main" ng-click="invite(name, email, job, company)"/>
+        </td>
       </tr>
 
       <!--<tr class="invite_error"><td>{{}}</td><td></td><td></td><td></td><td></td></tr>-->

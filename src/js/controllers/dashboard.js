@@ -95,10 +95,12 @@ dashboardControllers.controller('dashboardController', ['$scope', '$rootScope',	
   };
 }]);
 
-dashboardControllers.controller('usersController', ['$scope', '$stateParams',	'$state', 'editorService',
-  function($scope, $stateParams, $state, editorService){
+dashboardControllers.controller('usersController', ['$scope', '$stateParams',	'$state', 'editorService', 'authService',
+  function($scope, $stateParams, $state, editorService, authService){
+    
     $scope.users = [];
     $scope.template = {};
+
     $scope.loadTemplate = function(){
       editorService
         .get($stateParams.id, true)
@@ -109,6 +111,7 @@ dashboardControllers.controller('usersController', ['$scope', '$stateParams',	'$
           $scope.template = editorService.template;
         });
     };
+
     $scope.loadUsers = function(){
       editorService
         .getUsers($stateParams.id)
@@ -119,6 +122,20 @@ dashboardControllers.controller('usersController', ['$scope', '$stateParams',	'$
           $scope.users = users;
         });
     };
+
+    $scope.invite = function(name, email, job, company){
+      authService
+        .invite($stateParams.id, name, email, job, company)
+        .then(function(){
+          alert('success')
+        })
+        .catch(function(err){
+          if(err){
+            alert(err);
+          }
+        });
+    };
+
     $scope.loadTemplate();
     $scope.loadUsers();
   }

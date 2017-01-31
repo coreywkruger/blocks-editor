@@ -50,9 +50,10 @@ authServices.factory('authService', ['restangularService', 'localStorageService'
           .post('', args);
       };
 
-      this.invite = function(name, email, job, company){
+      this.invite = function(template_id, name, email, job, company){
         return this.api
           .one('invite')
+          .one(template_id)
           .post('', {
             name: name,
             email: email,
