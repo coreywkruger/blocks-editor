@@ -1,7 +1,9 @@
-var configModule = angular.module('configServices', []);
+var configModule = angular.module('configServices', [
+  'LocalStorageModule'
+]);
 
 configModule.service('configService', ['$location', '$rootScope', '$q',
 	function($location, $rootScope, $q) {
-    this.api_host = 'http://localhost:8888';
+		this.api_host = 'http://localhost:8888';
 	}
 ]);

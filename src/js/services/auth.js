@@ -1,9 +1,10 @@
 var authServices = angular.module('authServices', [
-  'restangularServices'
+  'restangularServices',
+  'LocalStorageModule'
 ]);
 
-authServices.factory('authService', ['restangularService',
-  function(restangularService) {
+authServices.factory('authService', ['restangularService', 'localStorageService',
+  function(restangularService, localStorageService) {
     return new function(){
 
       this.api = restangularService;
@@ -39,6 +40,7 @@ authServices.factory('authService', ['restangularService',
           })
           .then(function(res){
             this.session.team_token = res.token;
+            localStorageService.set('team-session', this.session.team_token);
           }.bind(this));
       };
 
@@ -48,11 +50,18 @@ authServices.factory('authService', ['restangularService',
           .post('', args);
       };
 
-      this.setSessionHeader = function(key) {
+      this.setSessionHeader = function(key, type) {
+        if(type == 'team'){
+          this.session.team_token = key;
+        }
         restangularService.defaultHeaders = {};
         restangularService.setDefaultHeaders({
           'blocks-session': key
         });
+      };
+
+      this.getSessionHeader = function(){
+        return localStorageService.get('team-session');
       };
     };
   }

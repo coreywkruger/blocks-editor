@@ -96,6 +96,6 @@ dashboardControllers.filter('initals', function(){
     for(var i = 0 ; i < names.length ; i++){
       initials.push(names[i][0].toUpperCase());
     }
-    return initials.join();
+    return initials.join('');
   }
 });

@@ -44,7 +44,6 @@ authControllers.controller('teamMenuController', ['$scope', '$state', 'authServi
         .loginTeam(organization_id)
         .then(function(){
           var session = authService.session.team_token;
-          console.log('\n\n\n==>', authService.session);
           authService.setSessionHeader(session);
           $state.go('dashboard');
         })

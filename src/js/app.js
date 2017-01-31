@@ -10,7 +10,8 @@ var app = angular.module('bdApp', [
   'fileDirectives',
   'fileServices',
   'templates',
-  'ui.router'
+  'ui.router',
+  'LocalStorageModule'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) => {
@@ -46,6 +47,12 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     });
 }]);
 
-app.run(['$state', '$rootScope', ($state, $rootScope) => {
-  console.log("hello world")
+app.run(['$state', '$rootScope', 'authService', ($state, $rootScope, authService) => {
+  console.log(authService.getSessionHeader())
+  authService.setSessionHeader(authService.getSessionHeader());
 }]);
+
+app.config(function(localStorageServiceProvider){
+  localStorageServiceProvider
+    .setPrefix('blocks');
+});
