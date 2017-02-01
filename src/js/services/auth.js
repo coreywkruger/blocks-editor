@@ -50,6 +50,19 @@ authServices.factory('authService', ['restangularService', 'localStorageService'
           .post('', args);
       };
 
+      this.joinTeam = function(user_id, token){
+        return this.api
+          .one('join-team')
+          .post('', {
+            user_id: user_id,
+            token: token
+          })
+          .then(function(res){
+            this.session.team_token = res.token;
+            localStorageService.set('team-session', this.session.team_token);
+          }.bind(this));
+      };
+
       this.invite = function(template_id, name, email, job, company){
         return this.api
           .one('invite')

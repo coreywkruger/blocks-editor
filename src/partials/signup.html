@@ -1,13 +1,18 @@
+<ng-include src="'/partials/login-header.html'"></ng-include>
 <section class="container account">
-    <form>
-        <h1>Sign Up</h1>
-        <input type="text" placeholder="Name" ng-model="name" name="name" value=""/><br/>
-        <input type="text" placeholder="Email address" ng-model="email" name="email" value="" /><br/>
-        <input type="password" placeholder="Password" ng-model="password" name="pass" /><br/>
-        <input type="text" placeholder="Job title (optional)" ng-model="job" name="job" value="" /><br/>
-        <!--<input type="text" placeholder="Organization (optional)" name="organization" value="" /><br/>-->
-        <input type="submit" value="Sign Up" ng-click="signup()" class="btn-main"/><br/>
-        <p class="signup_error"></p>
-        <p class="signup">Already have an account? <a ui-sref="login">Sign In</a></p>
-    </form>
+  <form>
+    <h1>Sign Up</h1>
+    <input type="text" placeholder="Name" 
+      ng-model="name" name="name" value=""/><br/>
+    <input type="text" placeholder="Email address"
+      ng-model="email" name="email" value="" /><br/>
+    <input type="password" placeholder="Password" 
+      ng-model="password" name="pass" /><br/>
+    <input type="text" placeholder="Job title (optional)" 
+      ng-model="job" name="job" value="" /><br/>
+    <!--<input type="text" placeholder="Organization (optional)" name="organization" value="" /><br/>-->
+    <input type="submit" value="Sign Up" ng-click="signup(name, email, password, job)" class="btn-main"/><br/>
+    <p class="signup_error"></p>
+    <p class="signup">Already have an account? <a ui-sref="login">Sign In</a></p>
+  </form>
 </section>

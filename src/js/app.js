@@ -31,9 +31,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       controller: 'teamMenuController'
     })
     .state('signup', {
-      url: '/signup',
+      url: '/signup?invite_token',
       templateUrl: '/partials/signup.html',
-      controller: 'authController'
+      controller: 'signupController'
     })
     .state('dashboard', {
       url: '/dashboard',
