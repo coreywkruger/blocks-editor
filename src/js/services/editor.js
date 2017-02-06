@@ -16,6 +16,7 @@ editorServices.factory('editorService', ['$rootScope', '$q', 'restangularService
             .get()
             .then(function(template){
               this.template = template;
+              return this.template;
             }.bind(this));
         } else {
           var deferred = $q.defer();

@@ -39,12 +39,13 @@
     "mocha": "^2.4.5",
     "restangular": "^1.6.1",
     "susy": "~2.2.2",
-    "uikit": "^2.25.0"
+    "uikit": "^2.25.0",
+    "yargs": "^6.6.0"
   },
   "scripts": {
     "start": "./node_modules/.bin/gulp",
-    "build": "git submodule update --init -- ./blocks-editor-demo; ./node_modules/.bin/gulp build",
-    "deploy": "npm run build && ./deploy.sh"
+    "build": "./build.sh http://localhost:8888",
+    "deploy": "./deploy.sh"
   },
   "repository": {
     "type": "git",

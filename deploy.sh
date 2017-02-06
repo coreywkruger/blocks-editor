@@ -1,5 +1,17 @@
+#!/bin/bash
+
+# get hash of parent repo
 REV=`git rev-parse HEAD`
-cd blocks-editor-demo; 
-git checkout -f gh-pages;
-git commit -am "blocks-editor: $REV"; 
-git push origin gh-pages;
+
+# get submodules
+SUBMODULE_DIR=`grep path .gitmodules | sed 's/.*= //'`
+
+# commit and push each submodule to respective gh-pages branches
+while read -r dir; do
+  echo "Deploying submodule: $dir";
+  cd $dir; 
+  git commit -am "Demo @ $REV"; 
+  git push origin gh-pages;
+done <<< "$SUBMODULE_DIR"
+
+

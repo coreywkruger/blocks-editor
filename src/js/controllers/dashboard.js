@@ -39,7 +39,9 @@ dashboardControllers.controller('dashboardController', ['$scope', '$rootScope',	
         $scope.templates.forEach(function(template){
           editorService.getUsers(template.id)
             .then(function(users){
-              template.users = users;
+              
+              template.users = users.plain();
+              console.log(template.users)
             });
         });
       })
@@ -143,11 +145,13 @@ dashboardControllers.controller('usersController', ['$scope', '$stateParams',	'$
 
 dashboardControllers.filter('initals', function(){
   return function(value){
-    var names = value.split(' ');
-    var initials = [];
-    for(var i = 0 ; i < names.length ; i++){
-      initials.push(names[i][0].toUpperCase());
+    if(value){
+      var names = value.split(' ');
+      var initials = [];
+      for(var i = 0 ; i < names.length ; i++){
+        initials.push(names[i][0].toUpperCase());
+      }
+      return initials.join('');
     }
-    return initials.join('');
   }
 });

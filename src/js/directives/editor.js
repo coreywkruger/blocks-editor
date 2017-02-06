@@ -1,5 +1,45 @@
 var editorDirectives = angular.module('editorDirectives', []);
 
+editorDirectives.directive('exportZip', function() {
+  return {
+    restrict: 'EA',
+    templateUrl: '/partials/export-modal.html',
+    scope: {
+      exportZip: '=',
+      exportName: '='
+    },
+    link: function(scope, element) {
+      console.log(scope.exportZip, scope.exportName)
+      element.slideDown('fast');
+
+      // $('#lightbox').fadeIn('fast');
+      // $('#lightbox').click(function() {
+      //   $('#lightbox').fadeOut('fast');
+      // });
+
+      scope.export = function(){
+        var blob = new Blob([scope.exportZip], {
+          type: 'text/plain;charset=utf-8' // 'octet/stream' // application/zip' // 'text/plain;charset=utf-8'
+        });
+        saveAs(blob, `${scope.exportName}.html`);
+      };
+    }
+  }
+});
+
+editorDirectives.directive('clickOut', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, element) {
+      element.fadeIn('fast');
+      element.click(function() {
+        element.fadeOut('fast');
+      });
+    }
+  }
+});
+
+
 editorDirectives.directive('editor', ['$compile', function($compile) {
   return {
     replace: true,

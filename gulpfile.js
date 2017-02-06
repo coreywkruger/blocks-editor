@@ -6,6 +6,7 @@ const connect = require('connect');
 const http = require('http');
 const concat = require('gulp-concat');
 const del = require('del');
+const yargs = require('yargs');
 const templateCache = require('gulp-angular-templatecache');
 
 const jsDestination = 'blocks-editor-demo/js';
@@ -15,6 +16,7 @@ const fontDestination = 'blocks-editor-demo/fonts';
 // build javascript files
 gulp.task('js', ['libs', 'angular-templates', 'app'], function() {
   return gulp.src([
+    './globals.js',
     jsDestination + '/libs.js',
     jsDestination + '/templates.js',
     jsDestination + '/app.js'

@@ -9,7 +9,8 @@ editorControllers.controller('editorController', ['$scope', '$state', '$statePar
   $scope.editing = false;
 
   this.loadTemplate = function(){
-    editorService.get($stateParams.id, true)
+    editorService
+      .get($stateParams.id, true)
       .then(function(template){
         $scope.content = template.content;
         $scope.name = template.name;
@@ -31,11 +32,9 @@ editorControllers.controller('editorController', ['$scope', '$state', '$statePar
     editorService.update(template.id, $scope.content);
   };
 
-  $scope.export = function(){
-    var blob = new Blob([$scope.content], {
-      type: 'text/plain;charset=utf-8' // 'octet/stream' // application/zip' // 'text/plain;charset=utf-8'
-    });
-    saveAs(blob, `${$scope.name}.html`);
+  $scope.showExporter = false;
+  $scope.startExport = function(){
+    $scope.showExporter = $scope.showExporter ? false : true;
   };
 
   $scope.saveMethod = function(newContent){
