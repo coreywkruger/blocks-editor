@@ -79,15 +79,20 @@ editorDirectives.directive('editor', ['$compile', function($compile) {
           });
 
           scope.$watch('editing', function(newVal){
-            if(newVal){
+            if(newVal == true){
               // apply new editors
               angular.forEach(regions, function(region){
                 region = $(region);
+                region.draggable('disable');
                 scope.applyEditor('.blocks-editable-text', region, scope.rules.text);
                 scope.applyEditor('.blocks-editable-image', region, scope.rules.image);
                 scope.applyEditor('.blocks-editable-link', region, scope.rules.link);
               });
             } else {
+              angular.forEach(regions, function(region){
+                region = $(region);
+                region.draggable('enable');
+              });
               // remove all editors
               for(var key in scope.editors){
                 scope.removeEditor(key);
@@ -137,42 +142,26 @@ editorDirectives.directive('editor', ['$compile', function($compile) {
           };
 
           scope.applyDraggable = function(region, rules){
-            console.log('asldjasdfj', region.draggable)
             region.draggable({
               revert: true,
-              zIndex: 10,
-              // snap: "#answers li",
-              // snapMode: "inner",
-              // snapTolerance: 40,
-              start: function (event, ui) {
-                console.log(event)
-                lastPlace = $(this).parent();
-              }
+              zIndex: 10
             });
 
-            region.parent().droppable({
+            region.droppable({
               drop: function (event, ui) {
-                var dropped = ui.draggable;
-                var droppedOn = this;
 
-                if ($(droppedOn).children().length > 0) {
-                  $(droppedOn).children().detach().prependTo($(lastPlace));
-                }
+                var dropped 
+                  = ui.draggable;
 
-                $(dropped).detach().css({
-                  top: 0,
-                  left: 0
-                }).prependTo($(droppedOn));
+                var droppedChildren = dropped.children();
+                var regionChildren = region.children();
+
+                droppedChildren
+                  .appendTo(region);
+                regionChildren
+                  .appendTo(dropped);
               }
             });
-            
-            // var dragId = Math.floor(Math.random() * 100);
-            // draggable.attr('ui-draggable', true);
-            // draggable.attr('drag', dragId);
-            // draggable.attr('drag-channel', 'A');
-            // draggable.attr('drop-channel', 'A');
-            // draggable.attr('ui-on-drop', `onDrop(${dragId}, $data)`);
-            // draggable.attr('ui-on-drop', `dropValidate(${dragId}, $data)`);
           };
 
           scope.removeEditor = function(key){
@@ -186,14 +175,6 @@ editorDirectives.directive('editor', ['$compile', function($compile) {
             scope.editors[key].destroy();
             // delete it so hard
             delete scope.editors[key];
-          };
-
-          scope.onDrop = function(source, target){
-            console.log(source, target)
-          };
-
-          scope.dropValidate = function(source, target){
-            console.log(source, target)
           };
         }
       });

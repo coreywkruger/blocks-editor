@@ -4,7 +4,7 @@ var editorControllers = angular.module('editorControllers', [
 
 editorControllers.controller('editorController', ['$scope', '$state', '$stateParams', 'editorService',	
   function($scope, $state, $stateParams, editorService){
-
+  
   $scope.rules = editorService.rules;
   $scope.editing = false;
 
@@ -29,7 +29,7 @@ editorControllers.controller('editorController', ['$scope', '$state', '$statePar
 
   $scope.save = function(){
     $scope.editing = false;
-    editorService.update(template.id, $scope.content);
+    editorService.update($stateParams.id, $scope.content);
   };
 
   $scope.showExporter = false;
