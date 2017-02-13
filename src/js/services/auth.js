@@ -28,7 +28,13 @@ authServices.factory('authService', ['restangularService', 'localStorageService'
           .then(function(res){
             this.session.user_token = res.token;
             this.organizations = res.organizations;
+            this.user = res.user;
+            localStorageService.set('user', JSON.stringify(this.user));
           }.bind(this));
+      };
+
+      this.getUser = function(){
+        return JSON.parse(localStorageService.get('user'));
       };
 
       this.loginTeam = function(organization_id){
@@ -48,6 +54,17 @@ authServices.factory('authService', ['restangularService', 'localStorageService'
         return this.api
           .one('signup')
           .post('', args);
+      };
+
+      this.updateUser = function(id, args){
+        return this.api
+          .one('users')
+          .one(id)
+          .customPUT(args)
+          .then(function(res){
+            this.user = res;
+            localStorageService.set('user', JSON.stringify(this.user));
+          });
       };
 
       this.joinTeam = function(user_id, token){
@@ -77,7 +94,8 @@ authServices.factory('authService', ['restangularService', 'localStorageService'
 
       this.getUsers = function(){
         return this.api
-          .one('users').get();
+          .one('users')
+          .get();
       };
 
       this.setSessionHeader = function(key, type) {

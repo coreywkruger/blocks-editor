@@ -11,7 +11,7 @@ while read -r dir; do
   echo "Deploying submodule: $dir";
   cd $dir; 
   git commit -am "Demo @ $REV"; 
-  git push origin gh-pages;
+  git push origin gh-pages --force;
 done <<< "$SUBMODULE_DIR"
 
 

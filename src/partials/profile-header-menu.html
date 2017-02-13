@@ -1,9 +1,9 @@
 <div class="profile-toggle" ng-controller="headerController">
     <a class="person" ng-click="toggleProfileOptions()">
-        CK
+        {{user.name | initials}}
     </a>
     <ul class="profileoptions" profile-options="showProfileOptions">
-        <li><a href="">My profile</a></li>
+        <li><a ui-sref="profile">My profile</a></li>
         <li><a ui-sref="login">Log out</a></li>
     </ul>
 </div>

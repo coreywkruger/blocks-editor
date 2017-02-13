@@ -1,7 +1,7 @@
 var headerTools = angular.module('headerTools', []);
 
-headerTools.controller('headerController', ['$scope', '$rootScope', '$stateParams', 'editorService',	function($scope, $rootScope, $stateParams, editorService){
-
+headerTools.controller('headerController', ['$scope', '$rootScope', '$stateParams', 'editorService', 'authService',	function($scope, $rootScope, $stateParams, editorService, authService){
+  $scope.user = authService.getUser();
   $scope.showProfileOptions = false;
   $scope.toggleProfileOptions = function(){
     $scope.showProfileOptions = $scope.showProfileOptions ? false : true;

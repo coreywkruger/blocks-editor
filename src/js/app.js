@@ -3,6 +3,7 @@ var app = angular.module('bdApp', [
   'editorControllers',
   'authControllers',
   'configServices',
+  'profileControllers',
   'dashboardControllers',
   'blockDirectives',
   'editorDirectives',
@@ -24,6 +25,11 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       url: '/login',
       templateUrl: '/partials/login.html',
       controller: 'authController'
+    })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: '/partials/profile.html',
+      controller: 'profileController'
     })
     .state('teams', {
       url: '/teams',

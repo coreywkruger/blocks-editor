@@ -1,6 +1,7 @@
 var dashboardControllers = angular.module('dashboardControllers', [
   'editorServices',
-  'fileServices'
+  'fileServices',
+  'authServices'
 ]);
 
 dashboardControllers.controller('dashboardController', ['$scope', '$rootScope',	'$state', 'editorService', 'fileService', function($scope, $rootScope, $state, editorService, fileService){
@@ -143,9 +144,9 @@ dashboardControllers.controller('usersController', ['$scope', '$stateParams',	'$
   }
 ]);
 
-dashboardControllers.filter('initals', function(){
+dashboardControllers.filter('initials', function(){
   return function(value){
-    if(value){
+    if(value && typeof value === 'string'){
       var names = value.split(' ');
       var initials = [];
       for(var i = 0 ; i < names.length ; i++){

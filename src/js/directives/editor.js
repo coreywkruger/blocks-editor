@@ -75,6 +75,7 @@ editorDirectives.directive('editor', ['$compile', function($compile) {
                   region.removeClass('region-hover');
                 }
               });
+            scope.applyDraggable(region);
           });
 
           scope.$watch('editing', function(newVal){
@@ -135,6 +136,45 @@ editorDirectives.directive('editor', ['$compile', function($compile) {
             });
           };
 
+          scope.applyDraggable = function(region, rules){
+            console.log('asldjasdfj', region.draggable)
+            region.draggable({
+              revert: true,
+              zIndex: 10,
+              // snap: "#answers li",
+              // snapMode: "inner",
+              // snapTolerance: 40,
+              start: function (event, ui) {
+                console.log(event)
+                lastPlace = $(this).parent();
+              }
+            });
+
+            region.parent().droppable({
+              drop: function (event, ui) {
+                var dropped = ui.draggable;
+                var droppedOn = this;
+
+                if ($(droppedOn).children().length > 0) {
+                  $(droppedOn).children().detach().prependTo($(lastPlace));
+                }
+
+                $(dropped).detach().css({
+                  top: 0,
+                  left: 0
+                }).prependTo($(droppedOn));
+              }
+            });
+            
+            // var dragId = Math.floor(Math.random() * 100);
+            // draggable.attr('ui-draggable', true);
+            // draggable.attr('drag', dragId);
+            // draggable.attr('drag-channel', 'A');
+            // draggable.attr('drop-channel', 'A');
+            // draggable.attr('ui-on-drop', `onDrop(${dragId}, $data)`);
+            // draggable.attr('ui-on-drop', `dropValidate(${dragId}, $data)`);
+          };
+
           scope.removeEditor = function(key){
             // identifiers
             var id = `block-editable-id-${key}`;
@@ -146,6 +186,14 @@ editorDirectives.directive('editor', ['$compile', function($compile) {
             scope.editors[key].destroy();
             // delete it so hard
             delete scope.editors[key];
+          };
+
+          scope.onDrop = function(source, target){
+            console.log(source, target)
+          };
+
+          scope.dropValidate = function(source, target){
+            console.log(source, target)
           };
         }
       });

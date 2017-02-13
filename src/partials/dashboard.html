@@ -1,11 +1,11 @@
 <ng-include src="'/partials/dashboard-header.html'"></ng-include>
-<section class="container template none">
+<!--<section class="container template none">
     <header>
         <div class="preview"></div>
         <br/>
         <p>Import your first template to get started.</p>
     </header>
-</section>
+</section>-->
 <section class="container template new add_template_box" ng-show="uploading">
     <header>
         <div class="preview"></div>
@@ -34,7 +34,7 @@
         <h1>{{template.name}}</h1>
         <ul class="people">
             <li ng-repeat="user in template.users">
-                <div class="person" title="{{user.name | initals}}">{{user.name | initals}}</div>
+                <div class="person" title="{{user.name | initials}}">{{user.name | initials}}</div>
             </li>
             <li>
                 <a href="" class="btn-alt people" ng-click="invite(template.id)">Invite/remove editors</a>

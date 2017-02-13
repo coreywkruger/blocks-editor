@@ -47,7 +47,8 @@ gulp.task('libs', function(){
     'node_modules/angulartics/dist/angulartics.min.js',
     'node_modules/medium-editor/dist/js/medium-editor.min.js',
     'node_modules/file-saver/FileSaver.js',
-    'node_modules/angular-local-storage/dist/angular-local-storage.min.js'
+    'node_modules/angular-local-storage/dist/angular-local-storage.min.js'//,
+    // 'node_modules/jquery-ui/build/release.js'
   ]).pipe(concat('libs.js')).pipe(gulp.dest(jsDestination));
 });
 

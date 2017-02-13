@@ -1,0 +1,24 @@
+<ng-include src="'/partials/dashboard-header.html'"></ng-include>
+
+<section class="container account">
+        <div class="person">
+            {{user.name | initials}}
+        </div>
+    <br/>
+    <a href="#" class="btn-alt upload upload_avatar_btn">Add avatar image</a><br/>
+    <a href="#" class="remove remove_avatar_btn">Remove avatar and show initials</a><br/>
+    <form enctype="multipart/form-data"><input type="file" class="upload_avatar" name="upload_avatar" value=""/></form>
+    <br/>
+    <form class="profile_form" name="profileForm">
+        <p>
+            <input type="text" name="name" ng-model="user.name" placeholder="Name"/><br/>
+            <input type="text" name="email" ng-model="user.email" placeholder="Email address"/><br/>
+            <input type="text" name="job" ng-model="user.job" placeholder="Job title (optional)"/><br/>
+            <!--<input type="text" name="organization" ng-model="user.organization" placeholder="Organization (optional)"/><br/>-->
+            <input type="submit" value="Save changes" class="btn-main" ng-click="submit(profileForm)"/>
+            <!--<p class="update_profile"><?php echo $this->response['message']; ?></p>-->
+        </p>
+    </form>
+    <a href="">Change password</a>
+
+</section>
