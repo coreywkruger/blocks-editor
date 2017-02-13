@@ -59,7 +59,7 @@ editorDirectives.directive('editor', ['$compile', function($compile) {
           scope.editors = {};
 
           // get all editable regions
-          var regions = element.find('.region');
+          var regions = element.find('.block-region');
           
           angular.forEach(regions, function(region){
             region = $(region);
