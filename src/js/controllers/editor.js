@@ -32,9 +32,8 @@ editorControllers.controller('editorController', ['$scope', '$state', '$statePar
     editorService.update($stateParams.id, $scope.content);
   };
 
-  $scope.showExporter = false;
   $scope.startExport = function(){
-    $scope.showExporter = $scope.showExporter ? false : true;
+    $scope.$broadcast('begin-export');
   };
 
   $scope.saveMethod = function(newContent){

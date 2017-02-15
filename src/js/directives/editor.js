@@ -5,20 +5,23 @@ editorDirectives.directive('exportZip', function() {
     restrict: 'EA',
     templateUrl: '/partials/export-modal.html',
     scope: {
-      exportZip: '=',
+      content: '=',
       exportName: '='
     },
     link: function(scope, element) {
-      console.log(scope.exportZip, scope.exportName)
-      element.slideDown('fast');
 
-      // $('#lightbox').fadeIn('fast');
-      // $('#lightbox').click(function() {
-      //   $('#lightbox').fadeOut('fast');
-      // });
+      scope.$on('begin-export', function(e, data){
+        $('.export-modal').slideDown('fast');
+        $('.export-overlay').fadeIn('fast');
+      });
+
+      $('.export-overlay').on('click', function(e){
+        $('.export-modal').slideUp('fast');
+        $('.export-overlay').fadeOut('fast');
+      });
 
       scope.export = function(){
-        var blob = new Blob([scope.exportZip], {
+        var blob = new Blob([scope.content], {
           type: 'text/plain;charset=utf-8' // 'octet/stream' // application/zip' // 'text/plain;charset=utf-8'
         });
         saveAs(blob, `${scope.exportName}.html`);

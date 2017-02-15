@@ -1,6 +1,3 @@
 <ng-include src="'/partials/editor-header.html'"></ng-include>
-<div ng-show="showExporter">
-  <div class="export-overlay"></div>
-  <div export-zip="content" export-name="name"></div>
-</div>
-<div editor content="content" editing="editing" save-method="saveMethod" rules="rules"></div>
+<div export-zip content="content" export-name="name"></div>
+<div editor style="all: initial;" content="content" editing="editing" save-method="saveMethod" rules="rules"></div>

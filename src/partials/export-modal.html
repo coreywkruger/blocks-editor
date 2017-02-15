@@ -1,9 +1,13 @@
-<div id="exportemail" class="lightboxwindow">
+<div id="exportemail" class="lightboxwindow export-modal"><!-- style="display: none" -->
   <section class="account">
     <h1>Export Email</h1>
+    <p style="color: #919191;">
+      Download a ZIP archive of the HTML code and images for your email to transfer to your email client for sending out.
+    </p>
     <a href="" class="btn-alt export_zip" ng-click="export()">Download ZIP archive</a><br/>
     <!--<a href="#" class="btn-alt">Copy link to the email</a><br/>
     <a href="#" class="btn-alt">Copy email HTML code</a><br/>-->
     <a href="">Instructions for importing into your email client</a>
   </section>
 </div>
+<div class="export-overlay"></div>
