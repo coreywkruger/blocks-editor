@@ -71,3 +71,36 @@ authControllers.controller('teamMenuController', ['$scope', '$state', 'authServi
     }
   }
 ]);
+
+authControllers.controller('passwordResetController', ['$scope', '$state', '$stateParams', 'authService',
+  function($scope, $state, $stateParams, authService){
+    
+    $scope.resetPassword = function(){
+      if($scope.newPassword_1 !== $scope.newPassword_2){
+        $scope.error = 'passwords do not match';
+      }
+      authService.resetPassword(
+        $stateParams.reset_password_token, 
+        $scope.newPassword_1, 
+        $scope.oldPassword
+      )
+      .then(function(){
+        $state.go('login');
+      })
+      .catch(function(err){
+        $scope.error = err;
+      });
+    };
+
+    $scope.requestPassword = function(){
+      authService
+        .requestPassword($scope.email)
+        .then(function(){
+          $scope.success = true;
+        })
+        .catch(function(err){
+          $scope.error = err;
+        });
+    };
+  }
+]);

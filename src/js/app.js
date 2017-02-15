@@ -18,7 +18,7 @@ var app = angular.module('bdApp', [
 app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) => {
     // $httpProvider.interceptors.push(/* */);
 
-    $urlRouterProvider.otherwise('/login');
+    // $urlRouterProvider.otherwise('/login');
 
     $stateProvider
     .state('login', {
@@ -40,6 +40,21 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       url: '/signup?invite_token',
       templateUrl: '/partials/signup.html',
       controller: 'signupController'
+    })
+    .state('password-request', {
+      url: '/password-request',
+      templateUrl: '/partials/password-request.html',
+      controller: 'passwordResetController'
+    })
+    .state('password-reset', {
+      url: '/password-reset?reset_password_token',
+      templateUrl: '/partials/password-reset.html',
+      controller: 'passwordResetController'
+    })
+    .state('password-reset-success', {
+      url: '/password-reset-success',
+      templateUrl: '/partials/password-reset-success.html',
+      controller: 'passwordResetController'
     })
     .state('dashboard', {
       url: '/dashboard',

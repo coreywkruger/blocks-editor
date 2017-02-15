@@ -4,7 +4,7 @@
         <h1>Sign In</h1>
         <input type="text" name="email" ng-model="email" placeholder="Email address" /><br/>
         <input type="password" name="password" ng-model="password" placeholder="Password" /><br/>
-        <p><a href="">Forgot password</a></p>
+        <p><a ui-sref="password-request">Forgot password</a></p>
         <input type="submit" value="Sign In" class="btn-main" ng-click="login()"/><br/>
         <p class="login_error"></p>
         <p class="signup">Don't have an account yet? <a ui-sref="signup">Sign Up</a></p>

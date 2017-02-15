@@ -56,6 +56,24 @@ authServices.factory('authService', ['restangularService', 'localStorageService'
           .post('', args);
       };
 
+      this.resetPassword = function(token, newPassword, oldPassword){
+        return this.api
+          .one('reset-password')
+          .post('', {
+            token: token,
+            password: newPassword,
+            old_password: oldPassword
+          });
+      };
+
+      this.requestPassword = function(email){
+        return this.api
+          .one('request-password')
+          .post('', {
+            email: email
+          });
+      };
+
       this.updateUser = function(id, args){
         return this.api
           .one('users')
