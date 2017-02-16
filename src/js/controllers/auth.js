@@ -97,6 +97,8 @@ authControllers.controller('passwordResetController', ['$scope', '$state', '$sta
         .requestPassword($scope.email)
         .then(function(){
           $scope.success = true;
+          alert('Success! Please check your email.');
+          $state.go('login');
         })
         .catch(function(err){
           $scope.error = err;
